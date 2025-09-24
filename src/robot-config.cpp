@@ -34,6 +34,7 @@ controller inputs were recieved earlier TUESDAY*/
 // motor intakeRight = motor(PORT14, ratio18_1, false);
 // motor_group Intake = motor_group(intakeLeft, intakeRight);
 motor upper = motor(PORT8, ratio18_1, true); /*Change PORT8 to whatever the upper motor is */
+motor highStakeM = motor(PORT8, ratio18_1, true); /*Change PORT8 to whatever the upper motor is */
 
 digital_out Clamp = digital_out(Brain.ThreeWirePort.A);
 digital_out Sweeper = digital_out(Brain.ThreeWirePort.E);

@@ -18,6 +18,7 @@ extern motor intakeLeft;
 extern motor intakeRight;
 extern motor_group Intake;
 extern motor upper;
+extern motor highStakeM; //this is just bc its picky and doesnt like it when i invoke something that doesnt exist
 
 extern digital_out Clamp;
 extern digital_out Sweeper;

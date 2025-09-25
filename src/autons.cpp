@@ -71,6 +71,10 @@ void rightSide()
 {
     //empty
 }
+void leftSide()
+{
+    //empty
+}
 
 // RED SIDE ONLY --> with double stacks
 void redLeftAuton()

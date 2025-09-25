@@ -226,80 +226,11 @@ void holonomic_odom_test()
 }
 
 
-void madon() {
-    Brain.Screen.print("          ");
-    Brain.Screen.clearScreen();
-    Brain.Screen.print(".         ");
-    Brain.Screen.clearScreen();
-    Brain.Screen.print("..        ");
-    Brain.Screen.clearScreen();
-    Brain.Screen.print("...       ");
-    Brain.Screen.clearScreen();
-    Brain.Screen.print("....      ");
-    Brain.Screen.clearScreen();
-    Brain.Screen.print(".....     ");
-    Brain.Screen.clearScreen();
-    Brain.Screen.print(" .....    ");
-    Brain.Screen.clearScreen();
-    Brain.Screen.print("  .....   ");
-    Brain.Screen.clearScreen();
-    Brain.Screen.print("   .....  ");
-    Brain.Screen.clearScreen();
-    Brain.Screen.print("    ..... ");
-    Brain.Screen.clearScreen();
-    Brain.Screen.print("     .....");
-    Brain.Screen.clearScreen();
-    Brain.Screen.print("      ....");
-    Brain.Screen.clearScreen();
-    Brain.Screen.print("       ...");
-    Brain.Screen.clearScreen();
-    Brain.Screen.print("        ..");
-    Brain.Screen.clearScreen();
-    Brain.Screen.print("         .");
-    Brain.Screen.clearScreen();
-    Brain.Screen.print("          ");
-    Brain.Screen.clearScreen();
-    chassis.turn_to_angle(0);
-    chassis.drive_distance(5);
-    chassis.turn_to_angle(90);
-    chassis.drive_distance(5);
-    chassis.turn_to_angle(180);
-    chassis.drive_distance(5);
-    chassis.turn_to_angle(270);
-    chassis.drive_distance(5);
-    chassis.turn_to_angle(360);
-    Brain.Screen.print("          ");
-    Brain.Screen.clearScreen();
-    Brain.Screen.print(".         ");
-    Brain.Screen.clearScreen();
-    Brain.Screen.print("..        ");
-    Brain.Screen.clearScreen();
-    Brain.Screen.print("...       ");
-    Brain.Screen.clearScreen();
-    Brain.Screen.print("....      ");
-    Brain.Screen.clearScreen();
-    Brain.Screen.print(".....     ");
-    Brain.Screen.clearScreen();
-    Brain.Screen.print(" .....    ");
-    Brain.Screen.clearScreen();
-    Brain.Screen.print("  .....   ");
-    Brain.Screen.clearScreen();
-    Brain.Screen.print("   .....  ");
-    Brain.Screen.clearScreen();
-    Brain.Screen.print("    ..... ");
-    Brain.Screen.clearScreen();
-    Brain.Screen.print("     .....");
-    Brain.Screen.clearScreen();
-    Brain.Screen.print("      ....");
-    Brain.Screen.clearScreen();
-    Brain.Screen.print("       ...");
-    Brain.Screen.clearScreen();
-    Brain.Screen.print("        ..");
-    Brain.Screen.clearScreen();
-    Brain.Screen.print("         .");
-    Brain.Screen.clearScreen();
-    Brain.Screen.print("          ");
-    Brain.Screen.clearScreen();
+void square() {
+    for (int i = 0; i < 4; i++) {
+        chassis.drive_distance(30);
+        chassis.turn_to_angle(chassis.get_absolute_heading() + 90);
+    }
 }
 
 void nothing() {

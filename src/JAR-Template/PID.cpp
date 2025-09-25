@@ -82,7 +82,7 @@ float settle_error, float settle_time, float timeout, float update_period) :
  * Computes the output power based on the error.
  * Typical PID calculation with some optimizations: When the robot crosses
  * error=0, the i-term gets reset to 0. And, of course, the robot only
- * accumulates i-term when error is less than starti. Read about these at
+ * accumulates i-term when error is less than start. Read about these at
  * https://georgegillard.com/resources/documents.
  * 
  * @param error Difference in desired and current position.

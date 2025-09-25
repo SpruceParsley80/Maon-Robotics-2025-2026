@@ -110,7 +110,7 @@ PORT3,     -PORT4,
 );
 
 
-int current_auton_selection = 4;
+int current_auton_selection = 9;
 int colorN = 2;          //1 = red, 2 = blue
 bool colorSort = false;
 
@@ -217,7 +217,7 @@ void autonomous(void) {
       skills();
       break;
     case 9:  //secret
-      madon();
+      square();
       break;
       
  }

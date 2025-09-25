@@ -13,14 +13,14 @@ controller Controller1 = controller(primary);
 
 //the "true" and "false" is the neutral direction of the motor --> if the drivetrain locks up, change the C motors to the oppostie
 //DON'T TREAT THIS ^ AS ABSOLUTELY TRUE; THE C MOTOR MAY NOT BE THE PROBLEM HERE
-motor leftMotorA = motor(PORT12, ratio18_1, true); 
-motor leftMotorB = motor(PORT11, ratio18_1, false); 
+motor leftMotorA = motor(PORT12, ratio18_1, false); 
+motor leftMotorB = motor(PORT11, ratio18_1, true); 
 motor leftMotorC = motor(PORT13, ratio18_1, false);  
 /*LeftMotorC direction was set to true during Ri3D 
 revert it to true if side locks up or if i say so*/
 motor_group LeftDriveSmart = motor_group(leftMotorA, leftMotorB, leftMotorC);
-motor rightMotorA = motor(PORT18, ratio18_1, true); 
-motor rightMotorB = motor(PORT19, ratio18_1, false);
+motor rightMotorA = motor(PORT18, ratio18_1, false); 
+motor rightMotorB = motor(PORT19, ratio18_1, true);
 motor rightMotorC = motor(PORT17, ratio18_1, false); 
 /*RightMotorC direction was set to true during Ri3D 
 revert it to true if side locks up or if i say so*/

@@ -15,14 +15,12 @@ extern motor rightMotorB;
 extern motor rightMotorC;
 extern motor_group RightDriveSmart;
 extern motor Intake;
-// extern motor upper;
-// extern motor_group Intake;
-extern motor upper;
-extern motor highStakeM; //this is just bc its picky and doesnt like it when i invoke something that doesnt exist
 
-extern digital_out Clamp;
+extern motor upper;
+//rip highstakemotor 2024-2025
+
+extern digital_out scrape;
 extern digital_out Sweeper;
-extern digital_out Hang;
 
 extern inertial inert;
 extern rotation RotationS;

@@ -260,106 +260,45 @@ void driverControlThread(){
   }
 }
 
-void highStakeThread(){
-  while (1){
-    if(Controller1.ButtonX.pressing()){
-        int i = 0;
-        
-        if (RotationS.position(deg) <= 20 && highStakeStopped == true){
-            while (RotationS.position(deg) <= 180){
-                highStakeM.spin(forward, 80, pct);
-                highStakeStopped = false;
-            }
-            i = 1;
-        }
-        else if (RotationS.position(deg) >= 20 && highStakeStopped == true){
-            while (RotationS.position(deg) >= 10){
-                highStakeM.spin(reverse, 80, pct);
-                highStakeStopped = false;
-            }
-            i = 2;
-        }
-        if (highStakeStopped == false && RotationS.position(deg) >= 180 && i == 1){
-            highStakeStopped = true;
-            highStakeM.stop(coast);
-        }       
-        else if (highStakeStopped == false && i == 2) {
-            highStakeStopped = true;
-            highStakeM.stop(coast);
-        }   
-    }
-    /*
-    else if (RotationS.position(deg) <= 20){    //keep highstake bar from interfering with intake
-      highStakeM.spin(reverse, 10, pct);
-    }
-    */
-  }
-}
 
-void hangThread(){
-    while (1){
-  // if the button is pressed once, then activate hang pneumatics until button pressed again
-    if (Controller1.ButtonUp.pressing()){
-        while (Controller1.ButtonUp.pressing()){
-        wait(100, msec);
-      }
-      HangPistonState = !HangPistonState;
-      Hang.set(HangPistonState);
+
+// void hangThread(){
+//     while (1){
+//   // if the button is pressed once, then activate hang pneumatics until button pressed again
+//     if (Controller1.ButtonUp.pressing()){
+//         while (Controller1.ButtonUp.pressing()){
+//         wait(100, msec);
+//       }
+//       HangPistonState = !HangPistonState;
+//       Hang.set(HangPistonState);
+//     }
+//   }
+// }
+void scrapeThread() {
+  while (1) {
+    if(Controller1.ButtonA.pressing()) {
+      scrape.set(true);
     }
   }
 }
-
 void intakeThread(){
   while (1){
     //intake
     if(Controller1.ButtonL1.pressing()){
-      if(colorSort == true && Optical.isNearObject() == true){        //when color sort is on
-        if (Optical.color() > 2000000 && Optical.color() < 16720000 && colorN == 2){  //red ring in blue
-          //Controller1.Screen.clearScreen();
-          //Controller1.Screen.print("red");
-
-          wait(83, msec);
-          Intake.stop(brake);
-          wait(125, msec);
-          Intake.spin(forward, 100, pct);
-          wait(100, msec);
-          intakeStopped = false;
-        }
-        else if (Optical.color() < 2000000 && colorN == 1){   //blue ring in red
-          //ontroller1.Screen.clearScreen();
-          //Controller1.Screen.print("blue");
-
-          wait(83, msec);
-          Intake.stop(brake);
-          wait(125, msec);
-          Intake.spin(forward, 100, pct);
-          wait(100, msec);
-          intakeStopped = false;
-        }
-        else{
           Intake.spin(forward, 100, pct);
           intakeStopped = false;
         }
-      }
-      else{
-        Intake.spin(forward, 100, pct);
-        intakeStopped = false;
-      }
-    }
     else if (Controller1.ButtonR1.pressing()){
       Intake.spin(reverse, 100, pct);
       intakeStopped = false;
     }
     else if (Controller1.ButtonL2.pressing()){    //using limit switch
-      if(!LimitS.pressing()){
-        Intake.spin(forward, 80, pct);
+        upper.spin(reverse, 80, pct);
         intakeStopped = false;
-      }
-      if(LimitS.pressing()){
-        intakeStopped = true;
-        Intake.stop(coast);
-        wait(1000, msec);
-      }
+    }
+    else if (Controller1.ButtonR2.pressing()){    //using limit switch
+        upper.spin(forward, 80, pct);
+        intakeStopped = false;
     }
     else if (intakeStopped == false){
       intakeStopped = true;
@@ -374,9 +313,7 @@ void usercontrol(void) {    //intake
 
   thread driver = thread(driverControlThread);
 
-  thread highstakethread = thread(highStakeThread);
-
-  thread hang = thread(hangThread);
+  // thread hang = thread(hangThread);
 
   thread intakeT = thread(intakeThread);
 
@@ -434,22 +371,10 @@ void usercontrol(void) {    //intake
 
     
     // if the button is pressed once, then activate clamp pneumatics until button pressed again
-    if (Controller1.ButtonA.pressing()){
-      while (Controller1.ButtonA.pressing()){
-        wait(100, msec);
-      }
-      ClampPistonState = !ClampPistonState;
-      Clamp.set(ClampPistonState);
-    }
+   
 
     // if the button is pressed once, then activate sweeper pneumatics until button pressed again
-    if (Controller1.ButtonR2.pressing()){
-      while (Controller1.ButtonR2.pressing()){
-        wait(100, msec);
-      }
-      SweeperPistonState = !SweeperPistonState;
-      Sweeper.set(SweeperPistonState);
-    }
+    
     
     /*
     // if the button is pressed once, then activate hang pneumatics until button pressed again

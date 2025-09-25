@@ -58,410 +58,48 @@ void rightSide(){
 
 void clampTest()
 {
-    highStakeM.spin(reverse, 20, pct);
-    chassis.turn_to_angle(60);
-    chassis.drive_distance(-5);
-
-    chassis.turn_to_angle(-30);
-    chassis.drive_distance(-6);
-
-    Clamp.set(true); // Clamp onto mobile goal
-    wait(1000, msec);
-
-    Intake.spinFor(forward, 3000, deg, 600, rpm, false); // put ring onto goal
-
-    chassis.turn_to_angle(92);
-
-    Intake.spinFor(forward, 3000, deg, 600, rpm, false);
+    //empty
 }
 
 void awp()
 {
-
-    chassis.drive_distance(-8, 0, 6, 0);
-    Clamp.set(true); // Clamp onto mobile goal
-    wait(500, msec);
-    // Intake.spinFor(forward, 10000, deg, 600, rpm, false);        //put ring onto goal
-    Intake.spin(forward, 80, pct);
-
-    chassis.turn_to_angle(99);
-
-    chassis.drive_distance(9.5); // get bottom ring
-    wait(900, msec);
-
-    chassis.turn_to_angle(-65);
-    wait(30, msec);
-
-    chassis.drive_distance(10);
-
-    wait(30, msec);
-    // Intake.spinFor(forward, 0, deg, 0, rpm, true);
-
-    Intake.stop();
-    Clamp.set(false); // drop mobile goal halfway over
-
-    chassis.drive_distance(9.5);
-    chassis.turn_to_angle(46);
-
-    chassis.drive_distance(-12.5);
-    Clamp.set(true); // Clamp onto mobile goal
-    wait(30, msec);
-
-    chassis.turn_to_angle(-76);
-
-    Intake.spin(forward, 80, pct);
-    // Intake.spinFor(forward, 6000, deg, 600, rpm, false);
-
-    chassis.drive_distance(5); // get bottom ring
-    chassis.turn_to_angle(-72);
-
-    chassis.drive_distance(-3);
-    wait(100, msec);
-
-    // moving towards the ladder
-    chassis.drive_distance(-5.5); // drive to middle
-    Intake.stop();
-    chassis.drive_distance(-2.5);
-
-    wait(30, msec);
-}
-
-void leftSide()
-{
-    Controller1.Screen.print("short leftSide");
-
-    chassis.drive_distance(-8, 0, 6, 0);
-    Clamp.set(true); // Clamp onto mobile goal
-    wait(500, msec);
-    Intake.spin(forward, 90, pct);
-
-    chassis.turn_to_angle(99);
-
-    chassis.drive_distance(8.5); // get bottom ring
-    wait(300, msec);
-
-    chassis.turn_to_angle(23);
-    Intake.stop();
-
-    Sweeper.set(true);
-
-    wait(200, msec);
-    chassis.drive_distance(12, 0, 9, 0);
-    wait(100, msec);
-
-    chassis.turn_to_angle(-50);
-    // chassis.drive_distance(-1);
-    Intake.spin(forward, 90, pct);
-    chassis.drive_distance(3);
-    wait(600, msec);
-    Intake.stop();
-
-    chassis.turn_to_angle(-157);
-    chassis.drive_distance(-4);
-
-    /*
-      Intake.spin(reverse,100,pct);
-      chassis.drive_distance(14);
-      wait(150,msec);
-      chassis.drive_distance(2.2);
-      Intake.stop();
-      wait(10,msec);
-      chassis.drive_distance(-0.3);
-      Intake.spin(forward,100,pct);
-      wait(200,msec);
-      chassis.drive_distance(-5);
-      */
-
-    // wait(50,msec);
-    // chassis.drive_distance(-10);
-    // chassis.turn_to_angle(70);
-    // Intake.stop();
-    // chassis.drive_distance(-13);
-
-    /*
-        chassis.turn_to_angle(60);
-
-        //moving towards the ladder
-        chassis.drive_distance(-7);
-        Intake.stop();
-        chassis.drive_distance(-5.5);
-        */
+    //empty
 }
 
 // works on both sides, red and blue right sides
 void rightSide()
 {
-    Controller1.Screen.print("short rightSide");
-    chassis.drive_distance(-9, 0, 6, 0);
-    Clamp.set(true); // Clamp onto mobile goal
-    wait(500, msec);
-    // Intake.spinFor(forward, 10000, deg, 600, rpm, false);        //put ring onto goal
-    Intake.spin(forward, 80, pct);
-
-    chassis.turn_to_angle(-95);
-    chassis.drive_distance(9); // get bottom ring
-
-    wait(100, msec);
-
-    chassis.turn_to_angle(-70);
-
-    // moving towards the ladder
-    wait(10, msec);
-    chassis.drive_distance(-9);
-    Intake.stop();
-    chassis.drive_distance(-5);
+    //empty
 }
 
 // RED SIDE ONLY --> with double stacks
 void redLeftAuton()
 {
-    Controller1.Screen.print("redLeftAuton");
-
-    chassis.drive_distance(-8, 0, 6, 0);
-    // chassis.drive_distance(-1, 0, 6, 0);
-    Clamp.set(true); // Clamp onto mobile goal
-    wait(500, msec);
-    Intake.spin(forward, 80, pct);
-
-    chassis.turn_to_angle(97);
-
-    chassis.drive_distance(9); // get bottom ring
-    wait(900, msec);
-
-    chassis.turn_to_angle(172); // turn to first ring
-    chassis.drive_distance(4.5);
-
-    wait(100, msec);
-
-    chassis.drive_distance(-4);
-
-    chassis.turn_to_angle(-158); // turn to second ring
-    chassis.drive_distance(5.2);
-
-    wait(100, msec);
-    chassis.drive_distance(-5);
-
-    chassis.turn_to_angle(70);
-
-    // moving towards the ladder
-    Hang.set(false);
-    wait(10, msec);
-    chassis.drive_distance(-8);
-    Intake.stop();
-    chassis.drive_distance(-5.4);
+    //empty
 }
 
 // BLUE SIDE ONLY --> with double stacks
 void blueRightAuton()
 {
-    Controller1.Screen.print("blueRightAuton");
-
-    chassis.drive_distance(-8, 0, 6, 0);
-    // chassis.drive_distance(-1, 0, 6, 0);
-    Clamp.set(true); // Clamp onto mobile goal
-    wait(500, msec);
-    // Intake.spinFor(forward, 10000, deg, 600, rpm, false);        //put ring onto goal
-    Intake.spin(forward, 80, pct);
-
-    chassis.turn_to_angle(-100);
-    chassis.drive_distance(10); // get bottom ring
-
-    wait(100, msec);
-
-    chassis.turn_to_angle(188); // turn to first ring
-    chassis.drive_distance(4); //4.3
-
-    wait(100, msec);
-
-    chassis.drive_distance(-4);
-
-    chassis.turn_to_angle(153); // turn to second ring
-    chassis.drive_distance(4);  //4.2
-
-    wait(100, msec);
-    chassis.drive_distance(-5);
-
-    chassis.turn_to_angle(-73);
-
-    // moving towards the ladder
-    wait(10, msec);
-    chassis.drive_distance(-8);
-    Intake.stop();
-    chassis.drive_distance(-5.4);
+    //empty
 }
 
 void goalRushRed(){
-    Controller1.Screen.print("goalRushRed");
-
-    chassis.drive_distance(10.5);
-    chassis.turn_to_angle(-45);
-    chassis.drive_distance(3.3);
-
-    Sweeper.set(true);
-    wait(500, msec);
-    chassis.drive_distance(-3.2, 0, 4, 0); // distance, heading, drive_max_voltage, heading_max_voltage
-    chassis.turn_to_angle(-120);           // turn to drag out of the way
-
-    Sweeper.set(false);
-
-    wait(1000, msec);
-    // chassis.turn_to_angle(-98);
-
-    chassis.turn_to_angle(-240); // turn to clamp
-    chassis.drive_distance(-6, 0, 4, 0);
-    // chassis.drive_distance(-1);
-    Clamp.set(true); // clamp onto mogo
-
-    Intake.spin(forward, 80, pct);
-
-    chassis.turn_to_angle(-182);
-    chassis.drive_distance(5.5); // get bottom ring
-    Intake.stop();
-
-    chassis.turn_to_angle(-35);
-    // chassis.drive_distance(-3);
-    Clamp.set(false);
-
-    chassis.drive_distance(3);
-    chassis.turn_to_angle(80);
-    chassis.drive_distance(-5);
-    Clamp.set(true); // grab second mogo
-    Intake.spin(forward, 80, pct);
-
-    chassis.turn_to_angle(-30);
-
-    // wait(500, msec),
-    chassis.drive_distance(2.7);
-
-    // chassis.turn_to_angle()
+   //empty
 }
 
 void goalRushBlue()
 {
-    Controller1.Screen.print("goalRushBlue");
-
-    chassis.drive_distance(10.7);
-    wait(10, msec);
-    chassis.turn_to_angle(28);
-    chassis.drive_distance(3.3);
-
-    Sweeper.set(true);
-    wait(500, msec);
-    chassis.drive_distance(-3.2, 0, 4, 0); // distance, heading, drive_max_voltage, heading_max_voltage
-    chassis.turn_to_angle(83);             // turn to drag out of the way
-
-    Sweeper.set(false);
-
-    wait(1000, msec);
-    // chassis.turn_to_angle(-98);
-
-    chassis.turn_to_angle(255); // turn to clamp
-    chassis.drive_distance(-6.5, 0, 4, 0);
-    // chassis.drive_distance(-1);
-    Clamp.set(true); // clamp onto mogo
-
-    Intake.spin(forward, 80, pct);
-
-    chassis.turn_to_angle(190);
-    chassis.drive_distance(6); // get bottom ring
-    Intake.stop();
-
-    chassis.turn_to_angle(35);
-    // chassis.drive_distance(-3);
-    Clamp.set(false);
-
-    chassis.drive_distance(3);
-    chassis.turn_to_angle(-84);
-    chassis.drive_distance(-5);
-    Clamp.set(true); // grab second mogo
-    Intake.spin(forward, 80, pct);
-
-    chassis.turn_to_angle(30);
-
-    // wait(500, msec),
-    chassis.drive_distance(3);
-
-    // chassis.turn_to_angle()
+    //empty; may delete if no goal rush
 }
 
 void red4test()
 {
-    Controller1.Screen.print("Running red 4 test");
-    wait(200, msec);
-
-    chassis.drive_distance(-8);
-    wait(10, msec);
-    chassis.drive_distance(-1.5);
-    Clamp.set(true);
-    Intake.spin(forward, 90, pct);
-    wait(100, msec);
-    chassis.turn_to_angle(132);
-    chassis.drive_distance(7.5);
-    wait(100, msec);
-    chassis.turn_to_angle(100);
-    chassis.drive_distance(3);
-    wait(100, msec);
-    chassis.drive_distance(-8);
-    chassis.turn_to_angle(65);
-    chassis.drive_distance(7);
-    wait(100, msec);
-    chassis.turn_to_angle(20);
-    Intake.stop();
-    wait(20, msec);
-    Intake.spin(reverse, 100, pct);
-    chassis.drive_distance(14);
-    wait(150, msec);
-    chassis.drive_distance(2.2);
-    Intake.stop();
-    wait(10, msec);
-    chassis.drive_distance(-0.3);
-    Intake.spin(forward, 100, pct);
-    wait(200, msec);
-    chassis.drive_distance(-5);
-
-    // wait(50,msec);
-    // chassis.drive_distance(-10);
-    chassis.turn_to_angle(65);
-    Intake.stop();
-    chassis.drive_distance(-13);
+    //empty
 }
 
 void redGoalRushClamp(){
-    Controller1.Screen.print("redGoalRushClamp");
-
-    chassis.drive_distance(-10.5);
-    chassis.turn_to_angle(-35);
-    chassis.drive_distance(-4.6);
-
-    Clamp.set(true);
-    wait(100, msec);
-
-    Intake.spin(forward, 80, pct);
-
-    chassis.turn_to_angle(13);
-    chassis.drive_distance(5.5); // get bottom ring
-    Intake.stop();
-
-    chassis.turn_to_angle(150);
-    chassis.drive_distance(-8);
-    Clamp.set(false);
-
-    chassis.drive_distance(3);
-
-    wait(100, msec);
-    
-    chassis.turn_to_angle(-75);
-    chassis.drive_distance(-10);
-    chassis.drive_distance(-1);
-    Clamp.set(true); // grab second mogo
-    Intake.spin(forward, 80, pct);
-
-    chassis.turn_to_angle(120);
-
-    // wait(500, msec),
-    chassis.drive_distance(4);
-
-    // chassis.turn_to_angle()
+    //empty; may delete if no goal rush
     
 }
 
@@ -469,203 +107,13 @@ void redGoalRushClamp(){
 
 void skills()
 {
-    Controller1.Screen.print("skills 19");
-
-    wait(200, msec);
-
-    chassis.drive_distance(-1.3);
-    wait(200, msec);
-
-    wait(20, msec);
-    chassis.turn_to_angle(120); // turning towards mogo
-    // wait(20, msec);
-    chassis.drive_distance(-9);
-    Clamp.set(true); // clamped to mogo
-
-    wait(20, msec);
-    chassis.turn_to_angle(-2);
-
-    Intake.spin(forward, 80, pct);
-
-    chassis.drive_distance(6); // first ring
-    wait(150, msec);
-    chassis.turn_to_angle(-57);
-    wait(20, msec);
-    chassis.drive_distance(13); // second ring       //14
-    wait(400, msec);
-    chassis.turn_to_angle(159); // 163
-    wait(20, msec);
-    chassis.drive_distance(6.3); // third ring
-    wait(200, msec);
-    chassis.turn_to_angle(-173);
-    chassis.drive_distance(6.5); // fourth ring
-    wait(600, msec);
-    chassis.drive_distance(5); // fifth ring
-    wait(400, msec);
-    chassis.turn_to_angle(-53);
-    chassis.drive_distance(5);
-    wait(400, msec);
-
-    chassis.turn_to_angle(28);
-    chassis.drive_distance(-6);
-    wait(20, msec);
-    Intake.stop();
-    Clamp.set(false);
-    Intake.spin(reverse, 100, pct);
-    wait(100, msec);
-    Intake.stop();
-
-    // above this, bottom left corner
-
-    chassis.drive_distance(3);
-    chassis.turn_to_angle(91);
-    Intake.spin(forward, 70, pct);
-    chassis.drive_distance(13);
-    wait(10, msec);
-    chassis.drive_distance(8.5);
-    wait(90, msec);
-    Intake.stop();
-    chassis.turn_to_angle(-85);
-    chassis.drive_distance(-3.5);
-    chassis.drive_distance(-3);
-
-    wait(20, msec);
-    Clamp.set(true); // clamp onto second mogo
-    wait(10, msec);
-    Intake.spin(forward, 80, pct);
-
-    chassis.turn_to_angle(6);
-    chassis.drive_distance(10);
-    wait(200, msec);
-    chassis.turn_to_angle(105);
-    wait(10, msec);
-    chassis.drive_distance(9);
-    wait(300, msec);
-    chassis.turn_to_angle(181);
-    chassis.drive_distance(6.5);
-    wait(500, msec);
-    chassis.drive_distance(5.5);
-    wait(400, msec);
-    chassis.turn_to_angle(38);
-    chassis.drive_distance(7.5);
-    wait(400, msec);
-
-    chassis.turn_to_angle(-25); //-23
-    chassis.drive_distance(-7);
-    wait(100, msec);
-    Intake.stop();
-    Clamp.set(false); // release mogo in corner
-    Intake.spin(reverse, 100, pct);
-    wait(50, msec);
-    Intake.stop();
-
-    // done with 1st half of field
-
-    Intake.spin(forward, 75, pct);
-    chassis.drive_distance(30); // 13.5
-    chassis.turn_to_angle(-50);
-    chassis.drive_distance(10); // get ring
-    Intake.stop();
-    wait(20, msec);
-
-    /*
-        chassis.turn_to_angle(18);
-        wait(10,msec);
-        chassis.drive_distance(9);
-        wait(50,msec);
-        Intake.stop();
-        // chassis.drive_distance(-5);
-        wait(10,msec);
-        chassis.drive_distance(-3.1);
-        chassis.turn_to_angle(90);
-        chassis.drive_distance(0.85);
-        wait(10,msec);
-
-        // hSfS();
-
-
-        wait(30,msec);
-        chassis.drive_distance(-3);
-        chassis.turn_to_angle(-49);
-        Intake.spin(forward,70,pct);
-        chassis.drive_distance(12);
-        wait(300,msec);
-        Intake.stop();
-        */
-
-    chassis.turn_to_angle(130);
-    chassis.drive_distance(-9.5);
-    wait(10, msec);
-    chassis.drive_distance(-5);
-    Clamp.set(true); // clamp onto mogo
-    Intake.spin(forward, 80, pct);
-
-    wait(200, msec);
-    chassis.turn_to_angle(-60);
-    Intake.stop();
-    chassis.drive_distance(7);
-    chassis.turn_to_angle(-107);
-    chassis.drive_distance(14); // push mogo into corner
-
-    chassis.drive_distance(-7);
-    chassis.turn_to_angle(80);
-    chassis.drive_distance(20); // push other mogo into corner
-    wait(20, msec);
-    chassis.drive_distance(20);
-    wait(20, msec);
-    chassis.drive_distance(20);
-    wait(20, msec);
-    chassis.drive_distance(-5);
-
-    // chassis.turn_to_angle(-45);
-    // Intake.spin(forward, 100, pct);
-    // chassis.drive_distance(-4);
-    chassis.turn_to_angle(-140); // turn to ladder    //140
-    wait(100, msec);
-    Clamp.set(false);
-    hSfS();
-    wait(250, msec);
-
-    Hang.set(true);
-    Intake.stop();
-
-    wait(50, msec);
-    chassis.drive_distance(19); // hang
+   //empty
 }
 
-// void hSfS(){
-//   vex::timer Timer;
-//   Timer.clear();
-//   bool LeBron = true;
-//   float currentTime = Timer.time(vex::timeUnits::sec);
-//   while (currentTime < 4 && LeBron) {
-//     if(!LimitS.pressing()){
-//       Intake.spin(forward,80,pct);
-//     }
-//     else{
-//       Intake.stop(coast);
-//       wait(500,msec);
-//       while (RotationS.position(deg) <= 145){
-//         highStakeM.spin(forward, 70, pct);
-//       }
-//       wait(500,msec);
-//       while (RotationS.position(deg) >= 10){
-//         Intake.spin(forward, 100, pct);
-//         highStakeM.spin(reverse, 70, pct);
-//       }
-//       LeBron = false;
-//     }
-//     currentTime = Timer.time(vex::timeUnits::sec);
-//   }
-//   Intake.stop();
-// }
+// there was a method here once
 void hSfS()
 {
-    while (RotationS.position(deg) > 10)
-    {
-        Intake.spin(forward, 100, pct);
-        highStakeM.spin(reverse, 80, pct);
-    }
+    //empty
 }
 
 /**

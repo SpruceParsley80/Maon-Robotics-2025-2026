@@ -29,16 +29,13 @@ motor_group RightDriveSmart = motor_group(rightMotorA, rightMotorB, rightMotorC)
 drivetrain Drivetrain6 = drivetrain(LeftDriveSmart, RightDriveSmart, 319.19, 295, 40, mm, 1);
 
 motor Intake = motor(PORT11, ratio18_1, false); 
+motor upper = motor(PORT8, ratio18_1, true); /*Change PORT8 to whatever the upper motor is */
 /*there was a problem with the intake driving when 
 controller inputs were recieved earlier TUESDAY*/
-// motor intakeRight = motor(PORT14, ratio18_1, false);
-// motor_group Intake = motor_group(intakeLeft, intakeRight);
-motor upper = motor(PORT8, ratio18_1, true); /*Change PORT8 to whatever the upper motor is */
-motor highStakeM = motor(PORT8, ratio18_1, true); /*Change PORT8 to whatever the upper motor is */
 
-digital_out Clamp = digital_out(Brain.ThreeWirePort.A);
-digital_out Sweeper = digital_out(Brain.ThreeWirePort.E);
-digital_out Hang = digital_out(Brain.ThreeWirePort.C);
+
+digital_out scrape = digital_out(Brain.ThreeWirePort.A);
+digital_out Sweeper = digital_out(Brain.ThreeWirePort.H);
 
 inertial inert(PORT3);     //if changing this port, MUST CHANGE at the top of main as well
 rotation RotationS = rotation(PORT19, false);

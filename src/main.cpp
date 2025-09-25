@@ -2,12 +2,10 @@
 
 using namespace vex;
 competition Competition;
-
-bool ClampPistonState = false;
+bool scrapePistonState = false;
 bool SweeperPistonState = true;
-bool HangPistonState = false;
 bool intakeStopped = true;
-bool highStakeStopped = true;
+bool upperStopped = true;
 
 /*---------------------------------------------------------------------------*/
 /*                             VEXcode Config                                */
@@ -277,7 +275,7 @@ void driverControlThread(){
 void scrapeThread() {
   while (1) {
     if(Controller1.ButtonA.pressing()) {
-      scrape.set(true);
+      scrape.set(!scrape);
     }
   }
 }
@@ -294,15 +292,18 @@ void intakeThread(){
     }
     else if (Controller1.ButtonL2.pressing()){    //using limit switch
         upper.spin(reverse, 80, pct);
-        intakeStopped = false;
+        upperStopped = false;
     }
     else if (Controller1.ButtonR2.pressing()){    //using limit switch
         upper.spin(forward, 80, pct);
-        intakeStopped = false;
+        upperStopped = false;
     }
     else if (intakeStopped == false){
       intakeStopped = true;
       Intake.stop(coast);
+    } else if (upperStopped == false) {
+      upperStopped = true;
+      upper.stop(coast);
     }
   }
 }

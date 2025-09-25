@@ -1,5 +1,5 @@
 #include "vex.h"
-#include "robot-config.h"
+// #include "robot-config.h"
 
 bool blocked = false;
 int numDeg = 0;

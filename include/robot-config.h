@@ -14,9 +14,9 @@ extern motor rightMotorA;
 extern motor rightMotorB;
 extern motor rightMotorC;
 extern motor_group RightDriveSmart;
-extern motor intakeLeft;
-extern motor intakeRight;
-extern motor_group Intake;
+extern motor Intake;
+// extern motor upper;
+// extern motor_group Intake;
 extern motor upper;
 extern motor highStakeM; //this is just bc its picky and doesnt like it when i invoke something that doesnt exist
 

@@ -28,7 +28,7 @@ motor_group RightDriveSmart = motor_group(rightMotorA, rightMotorB, rightMotorC)
 
 drivetrain Drivetrain6 = drivetrain(LeftDriveSmart, RightDriveSmart, 319.19, 295, 40, mm, 1);
 
-motor intake = motor(PORT11, ratio18_1, false); 
+motor Intake = motor(PORT11, ratio18_1, false); 
 /*there was a problem with the intake driving when 
 controller inputs were recieved earlier TUESDAY*/
 // motor intakeRight = motor(PORT14, ratio18_1, false);

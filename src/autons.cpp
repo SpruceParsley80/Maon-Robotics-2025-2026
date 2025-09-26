@@ -63,51 +63,66 @@ void clampTest()
 
 void awp()
 {
-    //empty
+    //solo AWP coming later
 }
 
 // works on both sides, red and blue right sides
 void rightSide()
 {
-    //empty
+    chassis.set_heading(0);
+    Intake.spinFor(forward, 500, deg, 480, rpm, false);
+    upper.spinFor(forward, 500, deg, 480, rpm, true);
+    Intake.stop(coast);
+    upper.stop(coast);
+    chassis.drive_distance(45.72); //18 in case its in, 457.2 in case its mm, and 1.5 in case its ft
+    chassis.turn_to_angle(135);
+    chassis.drive_distance(-10);
+    Intake.spinFor(forward, 500, deg, 480, rpm, false);
+    upper.spinFor(forward, 500, deg, 480, rpm, true);
+    Intake.stop(coast);
+    upper.stop(coast);
+    chassis.drive_distance(86.25);
+    chassis.turn_to_angle(180);
+    chassis.drive_distance(15);
+    Intake.spinFor(forward, 700, deg, 480, rpm, false);
+    upper.spinFor(forward, 700, deg, 480, rpm, true);
+    Intake.stop(coast);
+    upper.stop(coast);
+    chassis.drive_distance(-15);
+    chassis.drive_distance(-45.72);
+    Intake.spinFor(forward, 700, deg, 480, rpm, false);
+    upper.spinFor(forward, 700, deg, 480, rpm, true);
+    Intake.stop(coast);
+    upper.stop(coast);
 }
 void leftSide()
 {
-    //empty
+    chassis.set_heading(0);
+    Intake.spinFor(forward, 500, deg, 480, rpm, false);
+    upper.spinFor(forward, 500, deg, 480, rpm, true);
+    Intake.stop(coast);
+    upper.stop(coast);
+    chassis.drive_distance(45.72); //18 in case its in, 457.2 in case its mm, and 1.5 in case its ft
+    chassis.turn_to_angle(315);
+    chassis.drive_distance(-10);
+    Intake.spinFor(forward, 500, deg, 480, rpm, false);
+    upper.spinFor(forward, 500, deg, 480, rpm, true);
+    Intake.stop(coast);
+    upper.stop(coast);
+    chassis.drive_distance(86.25);
+    chassis.turn_to_angle(180);
+    chassis.drive_distance(15);
+    Intake.spinFor(forward, 700, deg, 480, rpm, false);
+    upper.spinFor(forward, 700, deg, 480, rpm, true);
+    Intake.stop(coast);
+    upper.stop(coast);
+    chassis.drive_distance(-15);
+    chassis.drive_distance(-45.72);
+    Intake.spinFor(forward, 700, deg, 480, rpm, false);
+    upper.spinFor(forward, 700, deg, 480, rpm, true);
+    Intake.stop(coast);
+    upper.stop(coast);
 }
-
-// RED SIDE ONLY --> with double stacks
-void redLeftAuton()
-{
-    //empty
-}
-
-// BLUE SIDE ONLY --> with double stacks
-void blueRightAuton()
-{
-    //empty
-}
-
-void goalRushRed(){
-   //empty
-}
-
-void goalRushBlue()
-{
-    //empty; may delete if no goal rush
-}
-
-void red4test()
-{
-    //empty
-}
-
-void redGoalRushClamp(){
-    //empty; may delete if no goal rush
-    
-}
-
-
 
 void skills()
 {
@@ -227,6 +242,7 @@ void holonomic_odom_test()
 
 
 void square() {
+    //ideally this works and drives in a square shape in case of good
     for (int i = 0; i < 4; i++) {
         chassis.drive_distance(30);
         chassis.turn_to_angle(chassis.get_absolute_heading() + 90);

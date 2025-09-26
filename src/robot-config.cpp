@@ -12,7 +12,7 @@ brain Brain;
 controller Controller1 = controller(primary);
 
 //the "true" and "false" is the neutral direction of the motor --> if the drivetrain locks up, change the C motors to the oppostie
-//DON'T TREAT THIS ^ AS ABSOLUTELY TRUE; THE C MOTOR MAY NOT BE THE PROBLEM HERE
+//DON'T TREAT THIS ^ AS ABSOLUTELY TRUE; THE C MOTOR MAY NOT BE THE PROBLEM HERE it isnt
 motor leftMotorA = motor(PORT12, ratio18_1, false); 
 motor leftMotorB = motor(PORT11, ratio18_1, true); 
 motor leftMotorC = motor(PORT13, ratio18_1, false);  
@@ -29,16 +29,15 @@ motor_group RightDriveSmart = motor_group(rightMotorA, rightMotorB, rightMotorC)
 drivetrain Drivetrain6 = drivetrain(LeftDriveSmart, RightDriveSmart, 319.19, 295, 40, mm, 1);
 
 motor Intake = motor(PORT14, ratio18_1, false); 
-motor upper = motor(PORT10, ratio18_1, true); /*Change PORT8 to whatever the upper motor is */
-/*there was a problem with the intake driving when 
-controller inputs were recieved earlier TUESDAY*/
+motor upper = motor(PORT10, ratio18_1, true); 
+
 
 
 digital_out scrape = digital_out(Brain.ThreeWirePort.A);
 digital_out Sweeper = digital_out(Brain.ThreeWirePort.H);
 
 inertial inert(PORT3);     //if changing this port, MUST CHANGE at the top of main as well
-rotation RotationS = rotation(PORT19, false);
+// rotation RotationS = rotation(PORT19, false);
 vex::distance DistanceS(PORT20);
 optical Optical = optical(PORT15);
 

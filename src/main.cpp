@@ -275,37 +275,42 @@ void driverControlThread(){
 void scrapeThread() {
   while (1) {
     if(Controller1.ButtonA.pressing()) {
-      scrape.set(!scrape);
+      scrapePistonState = !scrapePistonState;
+      scrape.set(scrapePistonState);
     }
   }
 }
 void intakeThread(){
   while (1){
     //intake
-    if(Controller1.ButtonL1.pressing()){
+    if (Controller1.ButtonL1.pressing()){
           Intake.spin(forward, 100, pct);
           intakeStopped = false;
-        }
+    }
     else if (Controller1.ButtonR1.pressing()){
       Intake.spin(reverse, 100, pct);
       intakeStopped = false;
     }
-    else if (Controller1.ButtonL2.pressing()){    //using limit switch
+    else if (intakeStopped == false){
+      intakeStopped = true;
+      Intake.stop(coast);
+    }
+  }
+}
+
+void upperIntakeThread() {
+    if (Controller1.ButtonL2.pressing()){    //using limit switch
         upper.spin(reverse, 80, pct);
         upperStopped = false;
     }
     else if (Controller1.ButtonR2.pressing()){    //using limit switch
         upper.spin(forward, 80, pct);
         upperStopped = false;
-    }
-    else if (intakeStopped == false){
-      intakeStopped = true;
-      Intake.stop(coast);
-    } else if (upperStopped == false) {
+    } 
+    else if (upperStopped == false) {
       upperStopped = true;
       upper.stop(coast);
     }
-  }
 }
    
 
@@ -317,6 +322,8 @@ void usercontrol(void) {    //intake
   // thread hang = thread(hangThread);
 
   thread intakeT = thread(intakeThread);
+  thread scrapeThread = thread(scrapeThread);
+  thread upperIntakeThread = thread(upperIntakeThread);
 
 
   while (1) { //same as while(true)
@@ -326,48 +333,7 @@ void usercontrol(void) {    //intake
 
       
       // faster integration time needs more light
-    Optical.integrationTime(25);      
-    Optical.setLightPower(100, percent);
-    Optical.objectDetectThreshold(0);
-
-    //Controller1.Screen.print(Optical.isNearObject());
-      
-      /*
-      color detectColor = Optical.color();
-      Controller1.Screen.clearLine();
-      Controller1.Screen.print(detectColor);
-
-      if (Optical.color() > 2000000 && Optical.color() < 16740000){
-          Controller1.Screen.clearLine();
-          Controller1.Screen.print("red");
-      }
-      else if (Optical.color() < 2000000){
-          Controller1.Screen.clearLine();
-          Controller1.Screen.print("blue");
-      }
-  */
-      
-
-     // turn colorSort on or off
-     if (Controller1.ButtonB.pressing()){
-        while (Controller1.ButtonB.pressing()){
-          wait(100, msec);
-        }
-        colorSort = !colorSort;
-        if (colorSort == true){
-          if (colorN == 1){
-            Controller1.Screen.clearLine();
-            Controller1.Screen.print("Sorting Blue");
-          }
-          if (colorN == 2){
-            Controller1.Screen.clearLine();
-            Controller1.Screen.print("Sorting Red");
-          }
-        }
-        else if (colorSort == false){
-          Controller1.Screen.clearScreen();
-        }
-     }
+    
 
 
     

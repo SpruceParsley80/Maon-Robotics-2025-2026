@@ -51,7 +51,8 @@ void vexcodeInit( void ) {
   LeftDriveSmart.setVelocity(600, rpm); //These values are for correcting drift through code so we don't have to correct it in hardware yet and I don't even know if this is gonna work
   RightDriveSmart.setVelocity(570, rpm);
   scrape.set(false);
-  Sweeper.set(false);
+  Sweeper.set(false); //this comment is to undo what i did earlier idk
+  
   inert.calibrate();
   wait(1, seconds);
 }

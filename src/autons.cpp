@@ -77,7 +77,7 @@ void rightSide()
     Intake.stop(coast);
     upper.stop(coast);
     chassis.drive_distance(76.2);
-    chassis.turn_to_angle(-35);
+    chassis.turn_to_angle(110.6);
     chassis.drive_distance(-10);
     Intake.spinFor(forward, 500, deg, 480, rpm, false);
     upper.spinFor(forward, 500, deg, 480, rpm, true);
@@ -106,7 +106,7 @@ void leftSide()
     Intake.stop(coast);
     upper.stop(coast);
     chassis.drive_distance(45.72); //18 in case its in, 457.2 in case its mm, and 1.5 in case its ft
-    chassis.turn_to_angle(315);
+    chassis.turn_to_angle(341.6);
     chassis.drive_distance(-10);
     Intake.spinFor(forward, 500, deg, 480, rpm, false);
     upper.spinFor(reverse, 500, deg, 480, rpm, true);
@@ -128,19 +128,19 @@ void leftSide()
 
 void rightSimple() {
     chassis.set_heading(0);
-    Intake.spinFor(forward, 500, deg, 480, rpm, false);
+    chassis.drive_distance(76.2); //18 in case its in, 457.2 in case its mm, and 1.5 in case its ft
+    Intake.spinFor(forward, 500, deg, 480, rpm, true);
     Intake.stop(coast);
-    upper.stop(coast);
-    chassis.drive_distance(45.72); //18 in case its in, 457.2 in case its mm, and 1.5 in case its ft
-    chassis.turn_to_angle(-35);
-    chassis.drive_distance(-10);
+    chassis.turn_to_angle(110.6);
+    chassis.drive_distance(-14);
     Intake.spinFor(forward, 500, deg, 480, rpm, false);
     upper.spinFor(forward, 500, deg, 480, rpm, true);
     Intake.stop(coast);
     upper.stop(coast);
+    chassis.drive_distance(14);
     chassis.drive_distance(86.25);
     chassis.turn_to_angle(180);
-    chassis.drive_distance(15);
+    chassis.drive_distance(15); 
     chassis.drive_distance(-15);
     chassis.drive_distance(-45.72);
     Intake.spinFor(forward, 700, deg, 480, rpm, false);

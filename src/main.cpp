@@ -54,7 +54,7 @@ LeftDriveSmart,
 RightDriveSmart,
 
 //Specify the PORT NUMBER of your inertial sensor, in PORT format (i.e. "PORT1", not simply "1"):
-PORT11,
+PORT1,
 
 //Input your wheel diameter. (4" omnis are actually closer to 4.125"):
 3.25,
@@ -185,46 +185,47 @@ void pre_auton() {
 
 void autonomous(void) {
   auto_started = true;
-  switch(current_auton_selection){ 
+//   switch(current_auton_selection){ 
 
-    case 0: //slot 1
-    Controller1.Screen.clearScreen();
-    Controller1.Screen.print("LEFT REACHED");
-      leftSimple();
-      //awp();
-      break;
-    case 1:     //slot 2
-    Controller1.Screen.clearScreen();
-    Controller1.Screen.print("RIGHT REACHED");
-      rightSimple();    
-      break;
-    case 2:     //slot 3
-      // redLeftAuton();
-      break;
-    case 3:     //slot 4
-      // blueRightAuton();
-      break;
-    case 4:     //slot 5
-      // redGoalRushClamp();
-      //goalRushRed(); 
-      break;
-    case 5:     //slot 6
-      // goalRushBlue();
-      break;
-    case 6:     //slot 7
-      // red4test();
-      break;
-    case 7:     //slot 8
-      // skills();
-      break;
-    case 8:     //slot 9
-      // skills();
-      break;
-    case 9:  //secret
-      square();
-      break;
+//     case 0: //slot 1
+//     Controller1.Screen.clearScreen();
+//     Controller1.Screen.print("LEFT REACHED");
+//       leftSimple();
+//       //awp();
+//       break;
+//     case 1:     //slot 2
+//     Controller1.Screen.clearScreen();
+//     Controller1.Screen.print("RIGHT REACHED");
+//       rightSimple();    
+//       break;
+//     case 2:     //slot 3
+//       // redLeftAuton();
+//       break;
+//     case 3:     //slot 4
+//       // blueRightAuton();
+//       break;
+//     case 4:     //slot 5
+//       // redGoalRushClamp();
+//       //goalRushRed(); 
+//       break;
+//     case 5:     //slot 6
+//       // goalRushBlue();
+//       break;
+//     case 6:     //slot 7
+//       // red4test();
+//       break;
+//     case 7:     //slot 8
+//       // skills();
+//       break;
+//     case 8:     //slot 9
+//       // skills();
+//       break;
+//     case 9:  //secret
+//       square();
+//       break;
       
- }
+//  }
+rightSimple(); //TEMPORARY FOR TESTING PURPOSES
 }
 
 /*---------------------------------------------------------------------------*/

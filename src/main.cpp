@@ -7,6 +7,7 @@ bool scrapePistonState = true;
 bool SweeperPistonState = false;
 bool intakeStopped = true;
 bool upperStopped = true;
+bool slow = true;
 
 /*---------------------------------------------------------------------------*/
 /*                             VEXcode Config                                */
@@ -230,17 +231,13 @@ void autonomous(void) {
 //       break;
       
 //  }
-// rightSimple(); //TEMPORARY FOR TESTING PURPOSES
+// LEFT SIDE (If uncommented, save to SLOT 2)
     chassis.set_heading(0);
     Intake.spinFor(forward, 1000, deg, 480, rpm, false);
     chassis.drive_distance(1.3 * 30.48);
     chassis.drive_stop(brake);
     Intake.stop(coast);
     wait(500, msec);
-    // chassis.turn_to_angle(135);
-    // chassis.drive_stop(brake);
-    // wait(500, msec);
-    // wait(500, msec);
     chassis.drive_distance(-0.125 * 30.48);
     chassis.drive_stop(brake);
     wait(500, msec);
@@ -249,14 +246,20 @@ void autonomous(void) {
     Intake.stop(coast);
     upper.stop(coast);
     wait(500, msec);
-    // chassis.drive_distance(-0.125 * 30.48);
-    // chassis.drive_stop(brake);
-    // wait(500, msec);
-// chassis.set_heading(0);
-// chassis.drive_distance(-20); //me when no autons (grr)
-// chassis.drive_stop(brake);
-// chassis.turn_to_angle(-90);
-// chassis.drive_stop(brake);
+//RIGHT SIDE (if uncommented, save to SLOT 1)
+    chassis.set_heading(0);
+    Intake.spinFor(forward, 1000, deg, 480, rpm, false);
+    chassis.drive_distance(-1.3 * 30.48);
+    chassis.drive_stop(brake);
+    Intake.stop(coast);
+    wait(500, msec);
+    chassis.drive_distance(0.125 * 30.48);
+    chassis.drive_stop(brake);
+    wait(500, msec);
+    Intake.spinFor(reverse, 800, deg, 500, rpm, true);
+    Intake.stop(coast);
+    wait(500, msec);
+
 wait(1, sec);
 }
 
@@ -411,6 +414,18 @@ void usercontrol(void) {    //intake
       }
       SweeperPistonState = !SweeperPistonState;
       Sweeper.set(SweeperPistonState);
+    }
+
+    if (Controller1.ButtonRight.pressing()) {
+      while (Controller1.ButtonRight.pressing()) {
+      }
+      slow = !slow;
+    }
+
+    if (slow) {
+      Controller1.Screen.print("Slow Mode");
+    } else {
+      Controller1.Screen.print("Fast Mode");
     }
 
 

@@ -136,19 +136,19 @@ void NinetyDegTurn() {
 
 void rightSimple() {
     chassis.set_heading(0);
-    chassis.drive_distance(2);
+    chassis.drive_distance(2 * 30.48);
     chassis.drive_stop(brake);
     Intake.spinFor(forward, 500, deg, 480, rpm, true);
     Intake.stop(coast);
     chassis.turn_to_angle(135);
     chassis.drive_stop(brake);
-    chassis.drive_distance(-0.25);
+    chassis.drive_distance(-0.25 * 30.48);
     chassis.drive_stop(brake);
     Intake.spinFor(forward, 500, deg, 480, rpm, false);
     upper.spinFor(reverse, 500, deg, 480, rpm, true);
     Intake.stop(coast);
     upper.stop(coast);
-    chassis.drive_distance(0.25);
+    chassis.drive_distance(0.25 * 30.48);
     chassis.drive_stop(brake);
     // chassis.drive_distance(2.1);
     // chassis.drive_stop(brake);

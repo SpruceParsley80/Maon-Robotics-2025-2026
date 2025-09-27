@@ -48,6 +48,8 @@ inertial inert(PORT1);     //if changing this port, MUST CHANGE at the top of ma
  * This should be called at the start of your int main function.
  */
 void vexcodeInit( void ) {
+  LeftDriveSmart.setVelocity(600, rpm); //These values are for correcting drift through code so we don't have to correct it in hardware yet and I don't even know if this is gonna work
+  RightDriveSmart.setVelocity(570, rpm);
   scrape.set(false);
   Sweeper.set(false);
   inert.calibrate();

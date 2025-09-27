@@ -2,8 +2,8 @@
 
 using namespace vex;
 competition Competition;
-bool scrapePistonState = false;
-bool SweeperPistonState = true;
+bool scrapePistonState = true;
+bool SweeperPistonState = false;
 bool intakeStopped = true;
 bool upperStopped = true;
 
@@ -54,10 +54,10 @@ LeftDriveSmart,
 RightDriveSmart,
 
 //Specify the PORT NUMBER of your inertial sensor, in PORT format (i.e. "PORT1", not simply "1"):
-PORT3,
+PORT11,
 
 //Input your wheel diameter. (4" omnis are actually closer to 4.125"):
-2.75,
+3.25,
 
 //External ratio, must be in decimal, in the format of input teeth/output teeth.
 //If your motor has an 84-tooth gear and your wheel has a 60-tooth gear, this value will be 1.4.
@@ -110,9 +110,9 @@ PORT3,     -PORT4,
 );
 
 
-int current_auton_selection = 9;
-int colorN = 2;          //1 = red, 2 = blue
-bool colorSort = false;
+int current_auton_selection = 0; //PLEASE REMEMBER TO CHANGE THIS BEFORE EACH MATCH! 
+//0 = left 1 = right 2 = awp (soon) 3 = skills (soon)
+
 
 bool auto_started = false;
 
@@ -188,33 +188,37 @@ void autonomous(void) {
   switch(current_auton_selection){ 
 
     case 0: //slot 1
-      leftSide();
+    Controller1.Screen.clearScreen();
+    Controller1.Screen.print("LEFT REACHED");
+      leftSimple();
       //awp();
       break;
     case 1:     //slot 2
-      rightSide();    
+    Controller1.Screen.clearScreen();
+    Controller1.Screen.print("RIGHT REACHED");
+      rightSimple();    
       break;
     case 2:     //slot 3
-      redLeftAuton();
+      // redLeftAuton();
       break;
     case 3:     //slot 4
-      blueRightAuton();
+      // blueRightAuton();
       break;
     case 4:     //slot 5
-      redGoalRushClamp();
+      // redGoalRushClamp();
       //goalRushRed(); 
       break;
     case 5:     //slot 6
-      goalRushBlue();
+      // goalRushBlue();
       break;
     case 6:     //slot 7
-      red4test();
+      // red4test();
       break;
     case 7:     //slot 8
-      skills();
+      // skills();
       break;
     case 8:     //slot 9
-      skills();
+      // skills();
       break;
     case 9:  //secret
       square();
@@ -275,6 +279,9 @@ void driverControlThread(){
 void scrapeThread() {
   while (1) {
     if(Controller1.ButtonA.pressing()) {
+      while(Controller1.ButtonA.pressing()) {
+        wait(100, msec);
+      }
       scrapePistonState = !scrapePistonState;
       scrape.set(scrapePistonState);
     }
@@ -282,10 +289,10 @@ void scrapeThread() {
 }
 void intakeThread(){
   while (1){
-    //intake
+    // intake
     if (Controller1.ButtonL1.pressing()){
-          Intake.spin(forward, 100, pct);
-          intakeStopped = false;
+        Intake.spin(forward, 100, pct);
+        intakeStopped = false;
     }
     else if (Controller1.ButtonR1.pressing()){
       Intake.spin(reverse, 100, pct);
@@ -294,23 +301,35 @@ void intakeThread(){
     else if (intakeStopped == false){
       intakeStopped = true;
       Intake.stop(coast);
-    }
-  }
-}
-
-void upperIntakeThread() {
+    } 
     if (Controller1.ButtonL2.pressing()){    //using limit switch
-        upper.spin(reverse, 80, pct);
+        upper.spin(reverse, 100, pct);
         upperStopped = false;
     }
     else if (Controller1.ButtonR2.pressing()){    //using limit switch
-        upper.spin(forward, 80, pct);
+        upper.spin(forward, 100, pct);
         upperStopped = false;
     } 
     else if (upperStopped == false) {
       upperStopped = true;
       upper.stop(coast);
     }
+  }
+}
+
+void upperIntakeThread() {
+    // if (Controller1.ButtonL2.pressing()){    //using limit switch
+    //     upper.spin(reverse, 80, pct);
+    //     upperStopped = false;
+    // }
+    // else if (Controller1.ButtonR2.pressing()){    //using limit switch
+    //     upper.spin(forward, 80, pct);
+    //     upperStopped = false;
+    // } 
+    // else if (upperStopped == false) {
+    //   upperStopped = true;
+    //   upper.stop(coast);
+    // }
 }
    
 
@@ -321,9 +340,9 @@ void usercontrol(void) {    //intake
 
   // thread hang = thread(hangThread);
 
-  thread intakeT = thread(intakeThread);
   thread scrapeThread = thread(scrapeThread);
-  thread upperIntakeThread = thread(upperIntakeThread);
+  thread intakeT = thread(intakeThread);
+  // thread upperIntakeThread = thread(upperIntakeThread);
 
 
   while (1) { //same as while(true)
@@ -343,16 +362,23 @@ void usercontrol(void) {    //intake
     // if the button is pressed once, then activate sweeper pneumatics until button pressed again
     
     
-    /*
+    
     // if the button is pressed once, then activate hang pneumatics until button pressed again
-    if (Controller1.ButtonUp.pressing()){
-        while (Controller1.ButtonUp.pressing()){
+    if (Controller1.ButtonA.pressing()){
+        while (Controller1.ButtonA.pressing()){
         wait(100, msec);
       }
-      HangPistonState = !HangPistonState;
-      Hang.set(HangPistonState);
+      scrapePistonState = !scrapePistonState;
+      scrape.set(scrapePistonState);
     }
-*/
+    if (Controller1.ButtonB.pressing()){
+        while (Controller1.ButtonB.pressing()){
+        wait(100, msec);
+      }
+      SweeperPistonState = !SweeperPistonState;
+      Sweeper.set(SweeperPistonState);
+    }
+
 
 
     wait(20, msec); // Sleep the task for a short amount of time to
@@ -388,11 +414,11 @@ void usercontrol(void) {
 int main() {
   // Set up callbacks for autonomous and driver control periods.
 
-    Competition.autonomous(autonomous);  
+    pre_auton();
+    Competition.autonomous(autonomous);
     Competition.drivercontrol(usercontrol);
 
   // Run the pre-autonomous function.
-  pre_auton();
 
 
 

@@ -272,7 +272,7 @@ void Drive::turn_to_angle(float angle, float turn_max_voltage, float turn_settle
     float output = turnPID.compute(error);
     output = clamp(output, -turn_max_voltage, turn_max_voltage);
     drive_with_voltage(output, -output);
-    vex::this_thread::sleep_for(10);  
+    wait(10, msec);  
 }
 }
 

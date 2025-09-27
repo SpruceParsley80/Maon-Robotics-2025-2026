@@ -15,9 +15,9 @@ controller Controller1 = controller(primary);
 // motor leftMotorA = motor(PORT12, ratio18_1, false); 
 // motor leftMotorB = motor(PORT11, ratio18_1, true); 
 // motor leftMotorC = motor(PORT13, ratio18_1, false);  
-motor leftMotorA = motor(PORT12, ratio18_1, true); 
+motor leftMotorA = motor(PORT12, ratio18_1, true);  
 motor leftMotorB = motor(PORT11, ratio18_1, false); 
-motor leftMotorC = motor(PORT13, ratio18_1, true);  
+motor leftMotorC = motor(PORT13, ratio18_1, true);   
 motor_group LeftDriveSmart = motor_group(leftMotorA, leftMotorB, leftMotorC);
 motor rightMotorA = motor(PORT18, ratio18_1, false); 
 motor rightMotorB = motor(PORT19, ratio18_1, true);
@@ -49,10 +49,10 @@ inertial inert(PORT1);     //if changing this port, MUST CHANGE at the top of ma
  */
 void vexcodeInit( void ) {
   LeftDriveSmart.setVelocity(600, rpm); //These values are for correcting drift through code so we don't have to correct it in hardware yet and I don't even know if this is gonna work
-  RightDriveSmart.setVelocity(570, rpm);
+  RightDriveSmart.setVelocity(600, rpm);
   scrape.set(false);
   Sweeper.set(false); //this comment is to undo what i did earlier idk
-  
+
   inert.calibrate();
   wait(1, seconds);
 }

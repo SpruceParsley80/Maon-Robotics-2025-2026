@@ -1,5 +1,5 @@
 #include "vex.h"
-// #include "robot-config.h"
+#include "robot-config.h"
 
 bool blocked = false;
 int numDeg = 0;
@@ -135,21 +135,32 @@ void NinetyDegTurn() {
 }
 
 void rightSimple() {
-    chassis.set_heading(0);
-    chassis.drive_distance(2 * 30.48);
+     chassis.set_heading(0);
+    Intake.spinFor(forward, 1000, deg, 480, rpm, false);
+    chassis.drive_distance(-1.3 * 30.48);
     chassis.drive_stop(brake);
-    Intake.spinFor(forward, 500, deg, 480, rpm, true);
     Intake.stop(coast);
-    chassis.turn_to_angle(135);
+    wait(500, msec);
+    // chassis.turn_to_angle(135);
+    // chassis.drive_stop(brake);
+    // wait(500, msec);
+    // wait(500, msec);
+    chassis.drive_distance(0.125 * 30.48);
     chassis.drive_stop(brake);
-    chassis.drive_distance(-0.25 * 30.48);
-    chassis.drive_stop(brake);
-    Intake.spinFor(forward, 500, deg, 480, rpm, false);
-    upper.spinFor(reverse, 500, deg, 480, rpm, true);
+    wait(500, msec);
+    Intake.spinFor(reverse, 800, deg, 500, rpm, true);
+    // upper.spinFor(reverse, 500, deg, 480, rpm, true);
     Intake.stop(coast);
     upper.stop(coast);
-    chassis.drive_distance(0.25 * 30.48);
-    chassis.drive_stop(brake);
+    wait(500, msec);
+    // chassis.drive_distance(-0.125 * 30.48);
+    // chassis.drive_stop(brake);
+    // wait(500, msec);
+// chassis.set_heading(0);
+// chassis.drive_distance(-20); //me when no autons (grr)
+// chassis.drive_stop(brake);
+// chassis.turn_to_angle(-90);
+// chassis.drive_stop(brake);
     // chassis.drive_distance(2.1);
     // chassis.drive_stop(brake);
     // chassis.turn_to_angle(180);
@@ -200,16 +211,16 @@ void hSfS()
 //  * The expected behavior is to return to the start angle, after making a complete turn.
 //  */
 
-// void turn_test()
-// {
-//     // chassis.turn_to_angle(5);
-//     // chassis.turn_to_angle(30);
-//     chassis.turn_to_angle(90);
-//     // chassis.turn_to_angle(180);
-//     // chassis.turn_to_angle(225);
-//     // chassis.turn_to_angle(0);
-//     Controller1.Screen.print("done");
-// }
+void turn_test()
+{
+    chassis.turn_to_angle(5);
+    chassis.turn_to_angle(30);
+    chassis.turn_to_angle(90);
+    chassis.turn_to_angle(180);
+    chassis.turn_to_angle(225);
+    chassis.turn_to_angle(0);
+    Controller1.Screen.print("done");
+}
 
 // /**
 //  * Should swing in a fun S shape.

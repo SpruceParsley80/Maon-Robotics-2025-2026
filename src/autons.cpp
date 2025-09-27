@@ -66,6 +66,10 @@ void awp()
     //solo AWP coming later
 }
 
+
+void driveforwardinator() {
+    chassis.drive_distance(60.96);
+}
 // works on both sides, red and blue right sides
 void rightSide()
 {

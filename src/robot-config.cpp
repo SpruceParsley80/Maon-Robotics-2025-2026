@@ -12,16 +12,19 @@ brain Brain;
 controller Controller1 = controller(primary);
 
 //the "true" and "false" is the neutral direction of the motor --> if the drivetrain locks up, change the C motors to the oppostie
-motor leftMotorA = motor(PORT12, ratio18_1, false); 
-motor leftMotorB = motor(PORT11, ratio18_1, true); 
-motor leftMotorC = motor(PORT13, ratio18_1, false);  
+// motor leftMotorA = motor(PORT12, ratio18_1, false); 
+// motor leftMotorB = motor(PORT11, ratio18_1, true); 
+// motor leftMotorC = motor(PORT13, ratio18_1, false);  
+motor leftMotorA = motor(PORT12, ratio18_1, true); 
+motor leftMotorB = motor(PORT11, ratio18_1, false); 
+motor leftMotorC = motor(PORT13, ratio18_1, true);  
 motor_group LeftDriveSmart = motor_group(leftMotorA, leftMotorB, leftMotorC);
 motor rightMotorA = motor(PORT18, ratio18_1, false); 
 motor rightMotorB = motor(PORT19, ratio18_1, true);
 motor rightMotorC = motor(PORT17, ratio18_1, false); 
 motor_group RightDriveSmart = motor_group(rightMotorA, rightMotorB, rightMotorC);
 
-drivetrain Drivetrain6 = drivetrain(LeftDriveSmart, RightDriveSmart, 319.19, 295, 40, mm, 1);
+drivetrain Drivetrain6 = drivetrain(LeftDriveSmart, RightDriveSmart, 319.19, 295, 40, mm, 0.75);
 
 motor Intake = motor(PORT9, ratio18_1, false); 
 motor upper = motor(PORT10, ratio18_1, false); 
@@ -47,4 +50,6 @@ inertial inert(PORT1);     //if changing this port, MUST CHANGE at the top of ma
 void vexcodeInit( void ) {
   scrape.set(false);
   Sweeper.set(false);
+  inert.calibrate();
+  wait(2, sec);
 }

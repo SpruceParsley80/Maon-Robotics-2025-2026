@@ -15,9 +15,9 @@ int numDeg = 0;
 void default_constants()
 {
     // Each constant set is in the form of (maxVoltage, kP, kI, kD, startI).
-    chassis.set_drive_constants(12, 2, 0, 1, 0);
-    chassis.set_heading_constants(6, .4, 0, 1, 0);
-    chassis.set_turn_constants(12, 0.1, 0.06, 0.4, 0);
+    chassis.set_drive_constants(12, 0.325, 0, 1, 0);
+    chassis.set_heading_constants(6, .1, 0, 1, 0);
+    chassis.set_turn_constants(11, 0.1, 0.05, 0.5, 0);
     chassis.set_swing_constants(12, 0, 0, 0, 15);
 
     // Each exit condition set is in the form of (settle_error, settle_time, timeout).
@@ -67,36 +67,37 @@ void awp()
 }
 
 
-void driveforwardinator() {
-    chassis.drive_distance(60.96);
-}
+
 // works on both sides, red and blue right sides
 void rightSide()
 {
-    Brain.Screen.clearScreen();
-    Brain.Screen.print("RIGHT AUTON STARTED");
-    Controller1.Screen.print("RIGHT AUTON STARTED");
-    chassis.set_heading(0);
-    Intake.spinFor(forward, 500, deg, 480, rpm, false);
+   chassis.set_heading(0);
+    chassis.drive_distance(2);
+    chassis.drive_stop(brake);
+    Intake.spinFor(forward, 500, deg, 480, rpm, true);
     Intake.stop(coast);
-    upper.stop(coast);
-    chassis.drive_distance(76.2);
     chassis.turn_to_angle(110.6);
-    chassis.drive_distance(-10);
+    chassis.drive_stop(brake);
+    chassis.drive_distance(-0.25);
+    chassis.drive_stop(brake);
     Intake.spinFor(forward, 500, deg, 480, rpm, false);
     upper.spinFor(forward, 500, deg, 480, rpm, true);
     Intake.stop(coast);
     upper.stop(coast);
-    chassis.drive_distance(86.25);
+    chassis.drive_distance(0.25);
+    chassis.drive_stop(brake);
+    chassis.drive_distance(2.1);
+    chassis.drive_stop(brake);
     chassis.turn_to_angle(180);
-    chassis.drive_distance(15);
+    chassis.drive_stop(brake);
+    chassis.drive_distance(0.25); 
+    chassis.drive_stop(brake);
+    chassis.drive_distance(0.25);
+    chassis.drive_stop(brake);
+    chassis.drive_distance(-2);
+    chassis.drive_stop(brake);
     Intake.spinFor(forward, 700, deg, 480, rpm, false);
-    Intake.stop(coast);
-    upper.stop(coast);
-    chassis.drive_distance(-15);
-    chassis.drive_distance(-45.72);
-    Intake.spinFor(forward, 700, deg, 480, rpm, false);
-    upper.spinFor(forward, 700, deg, 480, rpm, true);
+    upper.spinFor(reverse, 700, deg, 480, rpm, true);
     Intake.stop(coast);
     upper.stop(coast);
 }
@@ -129,26 +130,38 @@ void leftSide()
     Intake.stop(coast);
     upper.stop(coast);
 }
+void NinetyDegTurn() {
+    chassis.turn_to_angle(-90);    
+}
 
 void rightSimple() {
-    // chassis.set_heading(0);
-    // chassis.drive_distance(76.2); //18 in case its in, 457.2 in case its mm, and 1.5 in case its ft
+    chassis.set_heading(0);
+    chassis.drive_distance(2);
+    chassis.drive_stop(brake);
     Intake.spinFor(forward, 500, deg, 480, rpm, true);
-    // Intake.stop(coast);
-    // chassis.turn_to_angle(110.6);
-    // chassis.drive_distance(-14);
-    // Intake.spinFor(forward, 500, deg, 480, rpm, false);
-    // upper.spinFor(forward, 500, deg, 480, rpm, true);
-    // Intake.stop(coast);
-    // upper.stop(coast);
-    // chassis.drive_distance(14);
-    // chassis.drive_distance(86.25);
+    Intake.stop(coast);
+    chassis.turn_to_angle(135);
+    chassis.drive_stop(brake);
+    chassis.drive_distance(-0.25);
+    chassis.drive_stop(brake);
+    Intake.spinFor(forward, 500, deg, 480, rpm, false);
+    upper.spinFor(reverse, 500, deg, 480, rpm, true);
+    Intake.stop(coast);
+    upper.stop(coast);
+    chassis.drive_distance(0.25);
+    chassis.drive_stop(brake);
+    // chassis.drive_distance(2.1);
+    // chassis.drive_stop(brake);
     // chassis.turn_to_angle(180);
-    // chassis.drive_distance(15); 
-    // chassis.drive_distance(-15);
-    // chassis.drive_distance(-45.72);
+    // chassis.drive_stop(brake);
+    // chassis.drive_distance(0.25); 
+    // chassis.drive_stop(brake);
+    // chassis.drive_distance(0.25);
+    // chassis.drive_stop(brake);
+    // chassis.drive_distance(-2);
+    // chassis.drive_stop(brake);
     // Intake.spinFor(forward, 700, deg, 480, rpm, false);
-    // upper.spinFor(forward, 700, deg, 480, rpm, true);
+    // upper.spinFor(reverse, 700, deg, 480, rpm, true);
     // Intake.stop(coast);
     // upper.stop(coast);
 }

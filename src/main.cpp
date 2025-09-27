@@ -127,6 +127,8 @@ void pre_auton() {
   // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
   default_constants();
+  inert.calibrate();
+  wait(2, sec);
 
   //RotationS.resetPosition();
 
@@ -185,7 +187,7 @@ void pre_auton() {
 
 void autonomous(void) {
   auto_started = true;
-  chassis.drive_distance(76.2); //18 in case its in, 457.2 in case its mm, and 1.5 in case its ft
+  // chassis.drive_distance(76.2); //18 in case its in, 457.2 in case its mm, and 1.5 in case its ft
 //   switch(current_auton_selection){ 
 
 //     case 0: //slot 1
@@ -227,6 +229,12 @@ void autonomous(void) {
       
 //  }
 // rightSimple(); //TEMPORARY FOR TESTING PURPOSES
+chassis.set_heading(0);
+// chassis.drive_distance(-20); //me when no autons (grr)
+// chassis.drive_stop(brake);
+chassis.turn_to_angle(-90);
+chassis.drive_stop(brake);
+wait(1, sec);
 }
 
 /*---------------------------------------------------------------------------*/
@@ -243,7 +251,7 @@ void autonomous(void) {
 void control_arcade(){
   float throttle = Controller1.Axis1.position(pct);
   float turn = (Controller1.Axis3.position(pct) / 1.5);
-  LeftDriveSmart.spin(fwd, (throttle+turn), pct);
+  LeftDriveSmart.spin(reverse, (throttle+turn), pct);
   RightDriveSmart.spin(fwd, (throttle-turn), pct);
 }
 
@@ -252,10 +260,10 @@ void control_arcade(){
 void driverControlThread(){
   while (1){
     if(Controller1.Axis3.position(pct) != 0 || Controller1.Axis1.position(pct) != 0){
-        float throttle = Controller1.Axis1.position(pct);
-        float turn = (Controller1.Axis3.position(pct) / 1.5);
-        LeftDriveSmart.spin(fwd, (throttle+turn), pct);
-        RightDriveSmart.spin(fwd, (throttle-turn), pct);
+        float throttle = Controller1.Axis3.position(pct);
+        float turn = (Controller1.Axis1.position(pct) / 1.5);
+        LeftDriveSmart.spin(fwd, ((-1*throttle)-turn), pct);
+        RightDriveSmart.spin(fwd, ((-1*throttle)+turn), pct);
     }
     else{
       LeftDriveSmart.stop(coast);
@@ -416,8 +424,12 @@ void usercontrol(void) {
 int main() {
   // Set up callbacks for autonomous and driver control periods.
 
+    // pre_auton();
+    
     pre_auton();
     Competition.autonomous(autonomous);
+    // chassis.drive_distance(2); //me when no autons (grr)
+    // chassis.drive_stop(brake);
     Competition.drivercontrol(usercontrol);
 
   // Run the pre-autonomous function.

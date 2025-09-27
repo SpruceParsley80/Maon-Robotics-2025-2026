@@ -127,26 +127,26 @@ void leftSide()
 }
 
 void rightSimple() {
-    chassis.set_heading(0);
-    chassis.drive_distance(76.2); //18 in case its in, 457.2 in case its mm, and 1.5 in case its ft
+    // chassis.set_heading(0);
+    // chassis.drive_distance(76.2); //18 in case its in, 457.2 in case its mm, and 1.5 in case its ft
     Intake.spinFor(forward, 500, deg, 480, rpm, true);
-    Intake.stop(coast);
-    chassis.turn_to_angle(110.6);
-    chassis.drive_distance(-14);
-    Intake.spinFor(forward, 500, deg, 480, rpm, false);
-    upper.spinFor(forward, 500, deg, 480, rpm, true);
-    Intake.stop(coast);
-    upper.stop(coast);
-    chassis.drive_distance(14);
-    chassis.drive_distance(86.25);
-    chassis.turn_to_angle(180);
-    chassis.drive_distance(15); 
-    chassis.drive_distance(-15);
-    chassis.drive_distance(-45.72);
-    Intake.spinFor(forward, 700, deg, 480, rpm, false);
-    upper.spinFor(forward, 700, deg, 480, rpm, true);
-    Intake.stop(coast);
-    upper.stop(coast);
+    // Intake.stop(coast);
+    // chassis.turn_to_angle(110.6);
+    // chassis.drive_distance(-14);
+    // Intake.spinFor(forward, 500, deg, 480, rpm, false);
+    // upper.spinFor(forward, 500, deg, 480, rpm, true);
+    // Intake.stop(coast);
+    // upper.stop(coast);
+    // chassis.drive_distance(14);
+    // chassis.drive_distance(86.25);
+    // chassis.turn_to_angle(180);
+    // chassis.drive_distance(15); 
+    // chassis.drive_distance(-15);
+    // chassis.drive_distance(-45.72);
+    // Intake.spinFor(forward, 700, deg, 480, rpm, false);
+    // upper.spinFor(forward, 700, deg, 480, rpm, true);
+    // Intake.stop(coast);
+    // upper.stop(coast);
 }
 
 void leftSimple() {

@@ -48,10 +48,10 @@ ZERO_TRACKER_NO_ODOM,
 //You will input whatever motor names you chose when you configured your robot using the sidebar configurer, they don't have to be "Motor1" and "Motor2".
 
 //Left Motors:
-LeftDriveSmart,
+motor_group(leftMotorA, leftMotorB, leftMotorC),
 
 //Right Motors:
-RightDriveSmart,
+motor_group(rightMotorA, rightMotorB, rightMotorC),
 
 //Specify the PORT NUMBER of your inertial sensor, in PORT format (i.e. "PORT1", not simply "1"):
 PORT1,
@@ -185,6 +185,7 @@ void pre_auton() {
 
 void autonomous(void) {
   auto_started = true;
+  chassis.drive_distance(76.2); //18 in case its in, 457.2 in case its mm, and 1.5 in case its ft
 //   switch(current_auton_selection){ 
 
 //     case 0: //slot 1
@@ -225,7 +226,7 @@ void autonomous(void) {
 //       break;
       
 //  }
-rightSimple(); //TEMPORARY FOR TESTING PURPOSES
+// rightSimple(); //TEMPORARY FOR TESTING PURPOSES
 }
 
 /*---------------------------------------------------------------------------*/

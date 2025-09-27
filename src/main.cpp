@@ -281,12 +281,13 @@ void control_arcade(){
 
 //so that driver control works at all times
 void driverControlThread(){
+  const float turnMulti = 0.5;
   while (1){
     if(Controller1.Axis3.position(pct) != 0 || Controller1.Axis1.position(pct) != 0){
         float throttle = Controller1.Axis3.position(pct);
         float turn = (Controller1.Axis1.position(pct) / 1.5);
-        LeftDriveSmart.spin(fwd, ((-1*throttle)-turn), pct);
-        RightDriveSmart.spin(fwd, ((-1*throttle)+turn), pct);
+        LeftDriveSmart.spin(fwd, ((-1*throttle)-(turn * turnMulti)), pct);
+        RightDriveSmart.spin(fwd, ((-1*throttle)+(turn * turnMulti)), pct);
     }
     else{
       LeftDriveSmart.stop(coast);

@@ -8,6 +8,7 @@ bool SweeperPistonState = false;
 bool intakeStopped = true;
 bool upperStopped = true;
 bool slow = true;
+bool reversed = false;
 
 /*---------------------------------------------------------------------------*/
 /*                             VEXcode Config                                */
@@ -231,21 +232,21 @@ void autonomous(void) {
 //       break;
       
 //  }
-// LEFT SIDE (If uncommented, save to SLOT 2)
-    chassis.set_heading(0);
-    Intake.spinFor(forward, 1000, deg, 480, rpm, false);
-    chassis.drive_distance(1.3 * 30.48);
-    chassis.drive_stop(brake);
-    Intake.stop(coast);
-    wait(500, msec);
-    chassis.drive_distance(-0.125 * 30.48);
-    chassis.drive_stop(brake);
-    wait(500, msec);
-    Intake.spinFor(forward, 800, deg, 500, rpm, false);
-    upper.spinFor(reverse, 500, deg, 480, rpm, true);
-    Intake.stop(coast);
-    upper.stop(coast);
-    wait(500, msec);
+// // LEFT SIDE (If uncommented, save to SLOT 2)
+    // chassis.set_heading(0);
+    // Intake.spinFor(forward, 1000, deg, 480, rpm, false);
+    // chassis.drive_distance(1.3 * 30.48);
+    // chassis.drive_stop(brake);
+    // Intake.stop(coast);
+    // wait(500, msec);
+    // chassis.drive_distance(-0.125 * 30.48);
+    // chassis.drive_stop(brake);
+    // wait(500, msec);
+    // Intake.spinFor(forward, 800, deg, 500, rpm, false);
+    // upper.spinFor(reverse, 500, deg, 480, rpm, true);
+    // Intake.stop(coast);
+    // upper.stop(coast);
+    // wait(500, msec);
 //RIGHT SIDE (if uncommented, save to SLOT 1)
     chassis.set_heading(0);
     Intake.spinFor(forward, 1000, deg, 480, rpm, false);
@@ -285,12 +286,19 @@ void control_arcade(){
 //so that driver control works at all times
 void driverControlThread(){
   const float turnMulti = 0.5;
+  float driveMulti = 0.75;
+  short reversedness = -1;
   while (1){
-    if(Controller1.Axis3.position(pct) != 0 || Controller1.Axis1.position(pct) != 0){
+    if (reversed) {
+      reversedness = 1;
+    } else {
+      reversedness = -1;
+    }
+    if((Controller1.Axis3.position(pct) != 0 && abs(Controller1.Axis3.position(pct)) > 0.5) || Controller1.Axis1.position(pct) != 0){
         float throttle = Controller1.Axis3.position(pct);
         float turn = (Controller1.Axis1.position(pct) / 1.5);
-        LeftDriveSmart.spin(fwd, ((-1*throttle)-(turn * turnMulti)), pct);
-        RightDriveSmart.spin(fwd, ((-1*throttle)+(turn * turnMulti)), pct);
+        LeftDriveSmart.spin(fwd, ((reversedness * (throttle * driveMulti))-(turn * turnMulti)), pct);
+        RightDriveSmart.spin(fwd, ((reversedness * (throttle * driveMulti))+(turn * turnMulti)), pct);
     }
     else{
       LeftDriveSmart.stop(coast);
@@ -421,10 +429,17 @@ void usercontrol(void) {    //intake
       }
       slow = !slow;
     }
+    if (Controller1.ButtonY.pressing()) {
+      while (Controller1.ButtonY.pressing()) {
+      }
+      reversed = !reversed;
+    }
 
     if (slow) {
+      Controller1.Screen.clearScreen();
       Controller1.Screen.print("Slow Mode");
     } else {
+      Controller1.Screen.clearScreen();
       Controller1.Screen.print("Fast Mode");
     }
 

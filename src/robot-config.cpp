@@ -53,5 +53,5 @@ void vexcodeInit( void ) {
   scrape.set(false);
   Sweeper.set(false);
   inert.calibrate();
-  wait(2, sec);
+  wait(1, seconds);
 }

@@ -17,12 +17,23 @@
 		{
 			"name": "Win32",
 			"includePath": [
-				"${vex_sdkIncludes}"
+				"${vex_sdkIncludes}",
+				"/Users/masonsacksteder/Maon-Robotics-2025-2026/Maon-Robotics-2025-2026/include"
 			],
-			"compilerPath": "${vex_compilerPath}",
-			"cStandard": "gnu99",
-			"cppStandard": "gnu++11",
-			"intelliSenseMode": "windows-clang-x86"
+			"compilerPath": "/Users/masonsacksteder/Library/Application Support/Code/User/globalStorage/sigbots.pros/install/pros-toolchain-macos/bin/arm-none-eabi-g++",
+			"cStandard": "gnu11",
+			"cppStandard": "gnu++20",
+			"intelliSenseMode": "gcc-arm",
+			"macFrameworkPath": [
+				"/System/Library/Frameworks"
+			],
+			"browse": {
+				"path": [
+					"/Users/masonsacksteder/Maon-Robotics-2025-2026/Maon-Robotics-2025-2026"
+				],
+				"limitSymbolsToIncludedHeaders": true,
+				"databaseFilename": ""
+			}
 		},
 		{
 			"name": "Mac",

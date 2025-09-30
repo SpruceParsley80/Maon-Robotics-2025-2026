@@ -15,3 +15,6 @@ temp.log
 temp.errors
 *.ini
 .d/
+
+#maon
+include/Maon-Robotics-2025-2026.code-workspace

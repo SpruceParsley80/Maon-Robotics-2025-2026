@@ -373,6 +373,16 @@ void measure_offsets() {
   if (chassis.odom_tracker_front != nullptr) chassis.odom_tracker_front->distance_to_center_set(f_offset);
 }
 void right() {
-  chassis.pid_drive_set(24, DRIVE_SPEED);
+  //theory coded tweak values later yay
+  chassis.pid_turn_set(10_deg, TURN_SPEED);
+  chassis.pid_drive_set(30, DRIVE_SPEED);
+  chassis.pid_wait();
+  intake.move(127);
+  chassis.pid_wait();
+  intake.move(0);
+  chassis.pid_wait();
+  chassis.pid_turn_set(135_deg, TURN_SPEED);
+  chassis.pid_wait();
+  chassis.pid_drive_set(32, DRIVE_SPEED);
   
 }

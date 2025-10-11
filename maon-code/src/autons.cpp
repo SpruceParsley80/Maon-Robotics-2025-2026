@@ -372,62 +372,62 @@ void measure_offsets() {
   if (chassis.odom_tracker_back != nullptr) chassis.odom_tracker_back->distance_to_center_set(b_offset);
   if (chassis.odom_tracker_front != nullptr) chassis.odom_tracker_front->distance_to_center_set(f_offset);
 }
-void right() {
-  //theory coded tweak values later yay
-  chassis.pid_turn_set(10_deg, TURN_SPEED);
-  chassis.pid_drive_set(30, DRIVE_SPEED);
-  chassis.pid_wait();
-  intake.move(127);
-  chassis.pid_wait();
-  intake.move(0);
-  chassis.pid_wait();
-  chassis.pid_turn_set(135_deg, TURN_SPEED);
-  chassis.pid_wait();
-  chassis.pid_drive_set(32, DRIVE_SPEED);
-  chassis.pid_wait();
-  chassis.pid_turn_set(45_deg, TURN_SPEED);
-  chassis.pid_wait();
-  intake.move(127);
-  chassis.pid_wait();
-  intake.move(0);
-  chassis.pid_wait();
-  chassis.pid_drive_set(-24, DRIVE_SPEED);
-  intake.move(127);
-  chassis.pid_wait();
-  intake.move(0);
-}
-void left() {
-  //theory coded tweak values later yay also applies to this one
-  chassis.pid_turn_set(10_deg, -TURN_SPEED);
-  chassis.pid_drive_set(30, DRIVE_SPEED);
-  chassis.pid_wait();
-  intake.move(127);
-  chassis.pid_wait();
-  intake.move(0);
-  chassis.pid_wait();
-  chassis.pid_turn_set(45_deg, TURN_SPEED);
-  chassis.pid_wait();
-  chassis.pid_drive_set(32, DRIVE_SPEED);
-  chassis.pid_wait();
-  chassis.pid_turn_set(45_deg, TURN_SPEED);
-  chassis.pid_wait()
-  chassis.move
-  intake.move-(127);
-  chassis.pid_wait();
-  intake.move(0);
-  chassis.pid_wait();
-  chassis.pid_turn_set(215_deg, TURN_SPEED);
-  chassis.pid_wait();
-  chassis.pid_drive_set(32, DRIVE_SPEED);
-  intake.move-(127);
-  chassis.pid_wait();
-  intake.move(0);
-  chassis.pid_wait();
-  chassis.pid_turn_set(45_deg, -TURN_SPEED);
-  chassis.pid_drive_set(-24, DRIVE_SPEED);
-  intake.move(127);
-  chassis.pid_wait();
-  intake.move(0); 
-}
-//uh oh
-//its happening
+// void right() {
+//   //theory coded tweak values later yay
+//   chassis.pid_turn_set(10_deg, TURN_SPEED);
+//   chassis.pid_drive_set(30, DRIVE_SPEED);
+//   chassis.pid_wait();
+//   intake.move(127);
+//   chassis.pid_wait();
+//   intake.move(0);
+//   chassis.pid_wait();
+//   chassis.pid_turn_set(135_deg, TURN_SPEED);
+//   chassis.pid_wait();
+//   chassis.pid_drive_set(32, DRIVE_SPEED);
+//   chassis.pid_wait();
+//   chassis.pid_turn_set(45_deg, TURN_SPEED);
+//   chassis.pid_wait();
+//   intake.move(127);
+//   chassis.pid_wait();
+//   intake.move(0);
+//   chassis.pid_wait();
+//   chassis.pid_drive_set(-24, DRIVE_SPEED);
+//   intake.move(127);
+//   chassis.pid_wait();
+//   intake.move(0);
+// }
+// void left() {
+//   //theory coded tweak values later yay also applies to this one
+//   chassis.pid_turn_set(10_deg, -TURN_SPEED);
+//   chassis.pid_drive_set(30, DRIVE_SPEED);
+//   chassis.pid_wait();
+//   intake.move(127);
+//   chassis.pid_wait();
+//   intake.move(0);
+//   chassis.pid_wait();
+//   chassis.pid_turn_set(45_deg, TURN_SPEED);
+//   chassis.pid_wait();
+//   chassis.pid_drive_set(32, DRIVE_SPEED);
+//   chassis.pid_wait();
+//   chassis.pid_turn_set(45_deg, TURN_SPEED);
+//   chassis.pid_wait()
+//   chassis.move
+//   intake.move-(127);
+//   chassis.pid_wait();
+//   intake.move(0);
+//   chassis.pid_wait();
+//   chassis.pid_turn_set(215_deg, TURN_SPEED);
+//   chassis.pid_wait();
+//   chassis.pid_drive_set(32, DRIVE_SPEED);
+//   intake.move-(127);
+//   chassis.pid_wait();
+//   intake.move(0);
+//   chassis.pid_wait();
+//   chassis.pid_turn_set(45_deg, -TURN_SPEED);
+//   chassis.pid_drive_set(-24, DRIVE_SPEED);
+//   intake.move(127);
+//   chassis.pid_wait();
+//   intake.move(0); 
+// }
+// //uh oh
+// //its happening

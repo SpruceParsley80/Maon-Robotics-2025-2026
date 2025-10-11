@@ -13,8 +13,8 @@ SRCDIR=$(ROOT)/src
 INCDIR=$(ROOT)/include
 
 WARNFLAGS+=
-EXTRA_CFLAGS=
-EXTRA_CXXFLAGS=
+EXTRA_CFLAGS=-mcpu=cortex-a9 -mfpu=neon-fp16 -mfloat-abi=hard
+EXTRA_CXXFLAGS=-mcpu=cortex-a9 -mfpu=neon-fp16 -mfloat-abi=hard
 
 # Set to 1 to enable hot/cold linking
 USE_PACKAGE:=1

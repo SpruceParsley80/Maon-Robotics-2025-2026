@@ -410,8 +410,7 @@ void left() {
   chassis.pid_drive_set(32, DRIVE_SPEED);
   chassis.pid_wait();
   chassis.pid_turn_set(45_deg, TURN_SPEED);
-  chassis.pid_wait();
-  // chassis.pid_wait();
+  chassis.pid_wait()
   chassis.move
   intake.move-(127);
   chassis.pid_wait();

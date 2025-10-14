@@ -8,12 +8,12 @@
 // Chassis constructor
 ez::Drive chassis(
     // These are your drive motors, the first motor is used for sensing!
-    {1, 2, 3},     // Left Chassis Ports (negative port will reverse it!)
-    {-4, -5, -6},  // Right Chassis Ports (negative port will reverse it!)
+    {13, -20, 17},     // Left Chassis Ports (negative port will reverse it!) 
+    {-11, 19, -18},  // Right Chassis Ports (negative port will reverse it!)
 
     7,      // IMU Port
-    4.125,  // Wheel Diameter (Remember, 4" wheels without screw holes are actually 4.125!)
-    343);   // Wheel RPM = cartridge * (motor gear / wheel gear)
+    3.25,  // Wheel Diameter (Remember, 4" wheels without screw holes are actually 4.125!)
+    450);   // Wheel RPM = cartridge * (motor gear / wheel gear)
 
 // Uncomment the trackers you're using here!
 // - `8` and `9` are smart ports (making these negative will reverse the sensor)
@@ -30,8 +30,8 @@ ez::Drive chassis(
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
-  // Print our branding over your terminal :D
-  ez::ez_template_print();
+  // Print our branding over your terminal :D //hell no
+  // ez::ez_template_print();
 
   pros::delay(500);  // Stop the user from doing anything while legacy ports configure
 
@@ -248,7 +248,7 @@ void opcontrol() {
     ez_template_extras();
 
     chassis.opcontrol_tank();  // Tank control
-    // chassis.opcontrol_arcade_standard(ez::SPLIT);   // Standard split arcade
+    chassis.opcontrol_arcade_standard(ez::SPLIT);   // Standard split arcade
     // chassis.opcontrol_arcade_standard(ez::SINGLE);  // Standard single arcade
     // chassis.opcontrol_arcade_flipped(ez::SPLIT);    // Flipped split arcade
     // chassis.opcontrol_arcade_flipped(ez::SINGLE);   // Flipped single arcade

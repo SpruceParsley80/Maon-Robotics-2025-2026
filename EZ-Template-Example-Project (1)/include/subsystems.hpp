@@ -18,7 +18,7 @@ extern pros::adi::Pneumatics scrape(2);
 extern pros::adi::Pneumatics lift(3); //its probably made out of 2 pistons but still
 
 
-// Your motors, sensors, etc. should go here.  Below are examples
+// Your motors, sensors, etc. should go here. Below are examples
 
 // inline pros::Motor intake(1);
 // inline pros::adi::DigitalIn limit_switch('A');

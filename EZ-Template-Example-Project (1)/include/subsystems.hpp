@@ -13,9 +13,9 @@ inline pros::Motor intake4(21);
 
 //pneumatics
 //scraper
-inline pros::adi::DigitalOut scrape(2);
+inline pros::ADIDigitalOut scrape('H');
 //weird lifting intake thing
-inline pros::adi::DigitalOut lift(3); //its probably made out of 2 pistons but still
+inline pros::ADIDigitalOut lift('B'); //its probably made out of 2 pistons but still
 
 
 // Your motors, sensors, etc. should go here. Below are examples

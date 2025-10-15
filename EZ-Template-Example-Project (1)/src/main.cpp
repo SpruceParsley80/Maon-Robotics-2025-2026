@@ -8,8 +8,8 @@
 // Chassis constructor
 ez::Drive chassis(
     // These are your drive motors, the first motor is used for sensing!
-    {13, -20, 17},     // Left Chassis Ports (negative port will reverse it!) 
-    {-11, 19, -18},  // Right Chassis Ports (negative port will reverse it!)
+    {-13, 20, -17},     // Left Chassis Ports (negative port will reverse it!) 
+    {11, -19, 18},  // Right Chassis Ports (negative port will reverse it!)
 
     7,      // IMU Port
     3.25,  // Wheel Diameter (Remember, 4" wheels without screw holes are actually 4.125!)
@@ -51,7 +51,6 @@ void initialize() {
 
   // Set the drive to your own constants from autons.cpp!
   default_constants();
-
   // These are already defaulted to these buttons, but you can change the left/right curve buttons here!
   // chassis.opcontrol_curve_buttons_left_set(pros::E_CONTROLLER_DIGITAL_LEFT, pros::E_CONTROLLER_DIGITAL_RIGHT);  // If using tank, only the left side is used.
   // chassis.opcontrol_curve_buttons_right_set(pros::E_CONTROLLER_DIGITAL_Y, pros::E_CONTROLLER_DIGITAL_A);
@@ -226,6 +225,8 @@ void ez_template_extras() {
   }
 }
 
+
+  bool scraping = false;
 /**
  * Runs the operator control code. This function will be started in its own task
  * with the default priority and stack size whenever the robot is enabled via
@@ -330,13 +331,20 @@ void opcontrol() {
   while (true) {
     // Gives you some extras to make EZ-Template ezier
     ez_template_extras();
-
+    if(master.get_digital(pros::E_CONTROLLER_DIGITAL_A)) {
+      while(master.get_digital(pros::E_CONTROLLER_DIGITAL_A)) {
+        scraping = !scraping;
+        pros::delay(100);
+      }
+    }
     // chassis.opcontrol_tank();  // Tank control
     chassis.opcontrol_arcade_standard(ez::SPLIT);   // Standard split arcade
-    intake1.move((master.get_digital(pros::E_CONTROLLER_DIGITAL_L1) * (-1) + master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) * 127);
-    intake2.move((master.get_digital(pros::E_CONTROLLER_DIGITAL_L1) * (-1) + master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) * 127);
-    intake3.move((master.get_digital(pros::E_CONTROLLER_DIGITAL_L1) * (-1) + master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) * 127);
+    intake1.move((master.get_digital(pros::E_CONTROLLER_DIGITAL_L1) * (1) + master.get_digital(pros::E_CONTROLLER_DIGITAL_R1) * (-1)) * 127);
+    intake2.move((master.get_digital(pros::E_CONTROLLER_DIGITAL_L1) * (-1) + master.get_digital(pros::E_CONTROLLER_DIGITAL_R1) * (1)) * 127);
+    intake3.move((master.get_digital(pros::E_CONTROLLER_DIGITAL_L1) * (1) + master.get_digital(pros::E_CONTROLLER_DIGITAL_R1) * (-1)) * 97);
     intake4.move((master.get_digital(pros::E_CONTROLLER_DIGITAL_L2) * (-1) + master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) * 127);
+    scrape.set_value(scraping);
+
 
     //intake thread, for control of the lower intake thing™
     // pros::Task intakeTask (intakeThread);

@@ -242,31 +242,39 @@ void ez_template_extras() {
  void intakeThread() {
    while (1) {
     if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
+      while(master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
       intake1.move(-200);
       intake2.move(200);
       intake3.move(-200);
-    } else if (!master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
-      intake1.brake();
-      intake2.brake();
-      intake3.brake();
-    } else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
+      }
+    }
+    intake1.brake();
+    intake2.brake();
+    intake3.brake();
+     
+     if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
+      while(master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
       intake1.move(200);
       intake2.move(-200);
       intake3.move(200);
-    } else if (!master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
-      intake1.brake();
-      intake2.brake();
-      intake3.brake();
-    }else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
-      intake4.move(200);
-    } else if (!master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
-      intake4.brake();
-    }else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
-      intake4.move(-200);
-    } else if (!master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
-      intake4.brake();
+     }
     }
+    intake1.brake();
+    intake2.brake();
+    intake3.brake();
+      if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
+      while(master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
+      intake4.move(200);
+      }   
+    }
+    intake4.brake();
+     if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
+      while(master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
+      intake4.move(-200);
+      }
     } 
+    intake4.brake();
+    pros::delay(100);
 
 
     // while (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
@@ -286,32 +294,33 @@ void ez_template_extras() {
     //     intake3.brake();
     // }
  }
- void spitThread() {
-  //*ptoo*
-  while (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
-  if(master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
-        // intake1.move(127);
-        // intake2.move(-127);
-        // intake3.move(127);
-        intake4.move(-200);
-        pros::c::task_delay(1000);
-      } else {
-        intake4.brake();
-      }
-      }
-      intake4.brake();
-      while (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
-      if(master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
-        // intake1.move(-127);
-        // intake2.move(127);
-        // intake3.move(-127);
-        intake4.move(200);
-        pros::c::task_delay(1000);
-      } else {
-        intake4.brake();
-      }
-      }
- }
+}
+//  void spitThread() {
+//   //*ptoo*
+//   while (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
+//   if(master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
+//         // intake1.move(127);
+//         // intake2.move(-127);
+//         // intake3.move(127);
+//         intake4.move(-200);
+//         pros::c::task_delay(1000);
+//       } else {
+//         intake4.brake();
+//       }
+//       }
+//       intake4.brake();
+//       while (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
+//       if(master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
+//         // intake1.move(-127);
+//         // intake2.move(127);
+//         // intake3.move(-127);
+//         intake4.move(200);
+//         pros::c::task_delay(1000);
+//       } else {
+//         intake4.brake();
+//       }
+//       }
+//  }
 void opcontrol() {
   // This is preference to what you like to drive on
   chassis.drive_brake_set(MOTOR_BRAKE_COAST);
@@ -324,10 +333,15 @@ void opcontrol() {
 
     // chassis.opcontrol_tank();  // Tank control
     chassis.opcontrol_arcade_standard(ez::SPLIT);   // Standard split arcade
+    intake1.move((master.get_digital(pros::E_CONTROLLER_DIGITAL_L1) * (-1) + master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) * 127);
+    intake2.move((master.get_digital(pros::E_CONTROLLER_DIGITAL_L1) * (-1) + master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) * 127);
+    intake3.move((master.get_digital(pros::E_CONTROLLER_DIGITAL_L1) * (-1) + master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) * 127);
+    intake4.move((master.get_digital(pros::E_CONTROLLER_DIGITAL_L2) * (-1) + master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) * 127);
+
     //intake thread, for control of the lower intake thing™
     // pros::Task intakeTask (intakeThread);
-    pros::Task spitTask (spitThread);
-    intakeThread();
+    // pros::Task spitTask (spitThread);
+    // intakeThread();
     // spitThread();
     //spitter thread, which controls which way the intake spits the ball
     // chassis.opcontrol_arcade_standard(ez::SINGLE);  // Standard single arcade

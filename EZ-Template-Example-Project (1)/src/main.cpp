@@ -239,6 +239,56 @@ void ez_template_extras() {
  * operator control task will be stopped. Re-enabling the robot will restart the
  * task, not resume it from where it left off.
  */
+ void intakeThread() {
+  if(master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
+        while (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
+        intake1.move(200);
+        intake2.move(-200);
+        intake3.move(200);
+        // intake4.move(-127);
+      }
+
+    } else {
+      intake1.brake();
+      intake2.brake();
+      intake3.brake();
+    }
+    if(master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
+        while (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
+        intake1.move(-200);
+        intake2.move(200);
+        intake3.move(-200);
+        // intake4.move(127);
+      }
+    } else {
+    intake1.brake();
+    intake2.brake();
+    intake3.brake();
+    }
+ }
+ void spitThread() {
+  //*ptoo*
+  if(master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
+        while (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
+        // intake1.move(127);
+        // intake2.move(-127);
+        // intake3.move(127);
+        intake4.move(-200);
+      }
+    } else {
+      intake4.brake();
+    }
+    if(master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
+        while (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
+        // intake1.move(-127);
+        // intake2.move(127);
+        // intake3.move(-127);
+        intake4.move(200);
+      }
+    } else {
+      intake4.brake();
+    }
+ }
 void opcontrol() {
   // This is preference to what you like to drive on
   chassis.drive_brake_set(MOTOR_BRAKE_COAST);
@@ -256,46 +306,10 @@ void opcontrol() {
     // . . .
     // Put more user control code here!
     // . . .
-    while (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
-      if(master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
-        intake1.move(127);
-        intake2.move(-127);
-        intake3.move(127);
-        // intake4.move(-127);
-      }
-      intake1.brake();
-      intake2.brake();
-      intake3.brake();
-    }
-    while (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
-      if(master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
-        intake1.move(-127);
-        intake2.move(127);
-        intake3.move(-127);
-        // intake4.move(127);
-      }
-      intake1.brake();
-      intake2.brake();
-      intake3.brake();
-    }
-    while (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
-      if(master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
-        // intake1.move(127);
-        // intake2.move(-127);
-        // intake3.move(127);
-        intake4.move(-127);
-      }
-      intake4.brake();
-    }
-    while (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
-      if(master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
-        // intake1.move(-127);
-        // intake2.move(127);
-        // intake3.move(-127);
-        intake4.move(127);
-      }
-      intake4.brake();
-    }
+    //intake thread, for control of the lower intake thing™
+    pros::rtos::Task intake(intakeThread);
+    //spitter thread, which controls which way the intake spits the ball
+    pros::rtos::Task spit(spitThread);
     // while (master.get_digital(pros::E_CONTROLLER_DIGITAL_A));
 
     pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME

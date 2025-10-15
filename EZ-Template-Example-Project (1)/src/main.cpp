@@ -247,7 +247,7 @@ void opcontrol() {
     // Gives you some extras to make EZ-Template ezier
     ez_template_extras();
 
-    chassis.opcontrol_tank();  // Tank control
+    // chassis.opcontrol_tank();  // Tank control
     chassis.opcontrol_arcade_standard(ez::SPLIT);   // Standard split arcade
     // chassis.opcontrol_arcade_standard(ez::SINGLE);  // Standard single arcade
     // chassis.opcontrol_arcade_flipped(ez::SPLIT);    // Flipped split arcade
@@ -256,6 +256,47 @@ void opcontrol() {
     // . . .
     // Put more user control code here!
     // . . .
+    while (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
+      if(master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
+        intake1.move(127);
+        intake2.move(-127);
+        intake3.move(127);
+        // intake4.move(-127);
+      }
+      intake1.brake();
+      intake2.brake();
+      intake3.brake();
+    }
+    while (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
+      if(master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
+        intake1.move(-127);
+        intake2.move(127);
+        intake3.move(-127);
+        // intake4.move(127);
+      }
+      intake1.brake();
+      intake2.brake();
+      intake3.brake();
+    }
+    while (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
+      if(master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
+        // intake1.move(127);
+        // intake2.move(-127);
+        // intake3.move(127);
+        intake4.move(-127);
+      }
+      intake4.brake();
+    }
+    while (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
+      if(master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
+        // intake1.move(-127);
+        // intake2.move(127);
+        // intake3.move(-127);
+        intake4.move(127);
+      }
+      intake4.brake();
+    }
+    // while (master.get_digital(pros::E_CONTROLLER_DIGITAL_A));
 
     pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
   }

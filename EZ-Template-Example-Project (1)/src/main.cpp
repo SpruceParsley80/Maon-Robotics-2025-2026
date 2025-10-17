@@ -227,6 +227,7 @@ void ez_template_extras() {
 
 
   bool scraping = false;
+  bool intake2And3AutoStopOverride = false;
 /**
  * Runs the operator control code. This function will be started in its own task
  * with the default priority and stack size whenever the robot is enabled via
@@ -343,6 +344,14 @@ void opcontrol() {
     intake2.move((master.get_digital(pros::E_CONTROLLER_DIGITAL_L1) * (-1) + master.get_digital(pros::E_CONTROLLER_DIGITAL_R1) * (1)) * 127);
     intake3.move((master.get_digital(pros::E_CONTROLLER_DIGITAL_L1) * (1) + master.get_digital(pros::E_CONTROLLER_DIGITAL_R1) * (-1)) * 97);
     intake4.move((master.get_digital(pros::E_CONTROLLER_DIGITAL_L2) * (-1) + master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) * 127);
+    if((intake2.get_power() < 127 && intake3.get_power() < 127) && intake2And3AutoStopOverride) {
+      pros::delay(1500);
+        if(intake2.get_power() < 127 && intake3.get_power() < 127) {
+          intake2.move(0);
+          intake3.move(0);
+        }
+      }
+    }
     scrape.set_value(scraping);
 
 
